@@ -14,4 +14,4 @@ Actually, FreeImage is not need for the purpose of this project, but for private
 You must include FBXSDK headers with Processor Definition "FBXSDK_SHARED".
 
 ## Environment
-"MMD2FBX" use winapi but all function for the purpose is implemented in "Framework" project. 
+"MMD2FBX" use winapi but all the functions for the purpose is implemented in "Framework" project. 
