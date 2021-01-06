@@ -12,3 +12,5 @@ I used FBXSDK to export binary data to fbx format.
 Actually, FreeImage is not need for the purpose of this project, but for private purpose I included that.
 
 You must include FBXSDK headers with Processor Definition "FBXSDK_SHARED".
+
+#mmd
