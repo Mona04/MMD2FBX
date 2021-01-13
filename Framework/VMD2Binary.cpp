@@ -29,17 +29,25 @@ bool VMD2Binary::Init(Actor* actor, int frame_start, int frame_end)
 	auto src_animation = _actor->GetComponent<Animator>()->GetAnimation();
 	_ms_per_tick = src_animation->Get_MsPerTic();
 	auto _num_src_bone = actor->GetComponent<Transform>()->Get_Transform_Array().size();
-	_channels_data = std::vector<Animation_Channel>(_num_src_bone);
+	_channels_data = std::vector<Bone_Channel>(_num_src_bone);
 
 	if (frame_start == 0 && frame_end == -1)
 	{
 		for (auto i = 0; i < src_animation->Get_Channels().size(); i++)
 		{
 			const auto& src_channel = src_animation->Get_Channels()[i];
-			auto& channel = _channels_data[i];
+			auto& dst_channel = _channels_data[i];
 
-			channel.keys.resize(src_channel.keys.size());
-			std::copy(src_channel.keys.begin(), src_channel.keys.end(), channel.keys.data());
+			dst_channel.keys.resize(src_channel.keys.size());
+			std::copy(src_channel.keys.begin(), src_channel.keys.end(), dst_channel.keys.data());
+		}
+
+		for (const auto& src_morph : src_animation->Get_Morph_Channels())
+		{
+			auto& dst_channel = _morph_channels_data[src_morph.first];
+
+			dst_channel.keys.resize(src_morph.second.keys.size());
+			std::copy(src_morph.second.keys.begin(), src_morph.second.keys.end(), dst_channel.keys.data());
 		}
 	}
 	else
@@ -47,14 +55,34 @@ bool VMD2Binary::Init(Actor* actor, int frame_start, int frame_end)
 		for (auto i = 0; i < src_animation->Get_Channels().size(); i++)
 		{
 			const auto& src_channel = src_animation->Get_Channels()[i];
-			auto& channel = _channels_data[i];
+			auto& dst_channel = _channels_data[i];
 			for (auto j = 0; j < src_channel.keys.size(); j++)
 			{
 				const auto& key = src_channel.keys[j];
 				if (key.frame >= frame_start && key.frame <= frame_end)
 				{
 					const auto& src_key = src_channel.keys[j];
-					auto& key = channel.Add_Key();
+					auto& key = dst_channel.Add_Key();
+					memcpy(&key, &src_key, sizeof(key));
+					key.frame -= frame_start;
+
+					if (_end_frame < key.frame) // check endframe
+						_end_frame = key.frame;
+				}
+			}
+		}
+		for (const auto& src_morph : src_animation->Get_Morph_Channels())
+		{
+			const auto& src_channel = src_morph.second;
+			auto& dst_channel = _morph_channels_data[src_morph.first];
+
+			for (auto j = 0; j < src_channel.keys.size(); j++)
+			{
+				const auto& key = src_channel.keys[j];
+				if (key.frame >= frame_start && key.frame <= frame_end)
+				{
+					const auto& src_key = src_channel.keys[j];
+					auto& key = dst_channel.Add_Key();
 					memcpy(&key, &src_key, sizeof(key));
 					key.frame -= frame_start;
 
@@ -145,6 +173,13 @@ bool VMD2Binary::Export(const std::wstring_view path, Context* context)
 
 		dst_channel.keys.resize(channel_data.keys.size());
 		std::copy(channel_data.keys.begin(), channel_data.keys.end(), dst_channel.keys.data());
+	}
+	for (const auto& src_morph : _morph_channels_data)
+	{
+		auto& dst_channel = animation->Get_Morph_Channels()[src_morph.first];
+
+		dst_channel.keys.resize(src_morph.second.keys.size());
+		std::copy(src_morph.second.keys.begin(), src_morph.second.keys.end(), dst_channel.keys.data());
 	}
 
 	auto dst_path = FileSystem::GetIntactFileNameFromPath(path) + Extension_AnimationW;

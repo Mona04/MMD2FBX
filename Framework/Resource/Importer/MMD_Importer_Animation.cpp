@@ -3,19 +3,19 @@
 #include "MMD/CustomMMDHelper.h"
 #include <unordered_map>
 
-#include "Core/DirectX/0_IADesc/Input_Desc.h"
+#include "Framework/Core/DirectX/0_IADesc/Input_Desc.h"
 
-#include "Core/Subsystem/Resource/ResourceManager.h"
+#include "Framework/Core/Subsystem/Resource/ResourceManager.h"
 
-#include "Resource/Mesh.h"
-#include "Resource/SkeletalMesh.h"
-#include "Resource/Skeletion.h"
-#include "Resource/Material.h"
-#include "Resource/Animation.h"
-#include "Scene/Actor.h"
-#include "Scene/Component/Renderable.h"
-#include "Scene/Component/Transform.h"
-#include "Scene/Component/Animator.h"
+#include "framework/Resource/Mesh.h"
+#include "Framework/Resource/SkeletalMesh.h"
+#include "framework/Resource/Skeletion.h"
+#include "Framework/Resource/Material.h"
+#include "Framework/Resource/Animation.h"
+#include "Framework/Scene/Actor.h"
+#include "Framework/Scene/Component/Renderable.h"
+#include "Framework/Scene/Component/Transform.h"
+#include "Framework/Scene/Component/Animator.h"
 
 using namespace Framework;
 using namespace pmx;
@@ -65,8 +65,11 @@ bool MMD_Importer::Load_Animation(std::wstring_view path, Actor* actor, Context*
 		return false;
 	}
 
+	animation->Set_UseIK(true);
 	mgr->RegisterResource(animation, _basePathName + Extension_AnimationW);
 	animator->SetAnimation(animation->GetPath());
+
+	Clear();
 
 	return true;
 }
@@ -124,7 +127,7 @@ bool MMD_Importer::LoadBoneFrame(std::shared_ptr<Animation> animation, std::shar
 		_stream->read((char*)&frame, sizeof(int));
 		_stream->read((char*)&pos, sizeof(float) * 3); PreProcessing_MMD_Vector3(pos, true);
 		_stream->read((char*)&rot, sizeof(float) * 4); rot.Normalize();
-		_stream->read((char*)interpolation, 4 * 4 * 4); 
+		_stream->read((char*)interpolation, 4 * 4 * 4);
 
 		auto& bone = skeleton->GetBone(name);
 		if (bone.index >= 0)
@@ -134,11 +137,11 @@ bool MMD_Importer::LoadBoneFrame(std::shared_ptr<Animation> animation, std::shar
 			key.pos = pos;
 			key.rot = rot; // Vector3(rot.x, rot.y, rot.z).ToQuaternion();
 			key.frame = frame;
-			CalcBezier(key.bezier_x,   interpolation[0]);
-			CalcBezier(key.bezier_y,   interpolation[1]);
-			CalcBezier(key.bezier_z,   interpolation[2]);
+			CalcBezier(key.bezier_x, interpolation[0]);
+			CalcBezier(key.bezier_y, interpolation[1]);
+			CalcBezier(key.bezier_z, interpolation[2]);
 			CalcBezier(key.bezier_rot, interpolation[3]);
-			
+
 			animation->Set_Duration(frame);
 		}
 	}
@@ -148,7 +151,7 @@ bool MMD_Importer::LoadBoneFrame(std::shared_ptr<Animation> animation, std::shar
 
 void MMD_Importer::CalcBezier(Vector2* desc, const uint8_t* src)
 {
-	int x0 = src[0]; int y0 = src[4]; 
+	int x0 = src[0]; int y0 = src[4];
 	int x1 = src[8]; int y1 = src[12];
 	desc[0] = Vector2((float)x0 / 127.0f, (float)y0 / 127.0f);
 	desc[1] = Vector2((float)x1 / 127.0f, (float)y1 / 127.0f);
@@ -159,18 +162,24 @@ bool MMD_Importer::LoadFaceFrame(std::shared_ptr<class Animation> animation, std
 	// face frames
 	int face_frame_num;
 	_stream->read((char*)&face_frame_num, sizeof(int));
-	
+
+	auto& morph_channels = animation->Get_Morph_Channels();
+
 	std::wstring name;
 	int frame = 0;
-
+	float weight = 0;
 	for (int i = 0; i < face_frame_num; i++)
 	{
-		float weight;
 		name = ReadPmxWString(_stream, 15);  // bone 에 없으니까 알아두셈
 		_stream->read((char*)&frame, sizeof(int));
 		_stream->read((char*)&weight, sizeof(float));
+
+		auto& key = morph_channels[name].Add_Key();
+		key.frame = frame;
+		key.weight = weight;
 	}
-	return false;
+
+	return true;
 }
 
 bool MMD_Importer::LoadCameraFrame(std::shared_ptr<class Animation> animation, std::shared_ptr<class Skeleton> skeleton)
@@ -207,7 +216,7 @@ bool MMD_Importer::LoadLightFrame(std::shared_ptr<class Animation> animation, st
 	// light frames
 	int light_frame_num;
 	_stream->read((char*)&light_frame_num, sizeof(int));
-	
+
 	std::wstring name;
 	int frame = 0;
 

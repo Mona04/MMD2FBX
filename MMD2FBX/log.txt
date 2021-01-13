@@ -1,0 +1,618 @@
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru.skmesh
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru0.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru1.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru2.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru3.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru4.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru5.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru6.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru7.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru.skeleton
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/mmd_Melt_motion.anim
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru.skmesh
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru.skmesh
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru0.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru1.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru2.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru3.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru4.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru5.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru6.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru7.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru.skeleton
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru.skmesh
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru0.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru1.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru2.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru3.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru4.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru5.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru6.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru7.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru.skeleton
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru0.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru1.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru2.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru3.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru4.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru5.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru6.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru7.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru8.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru9.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru10.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru11.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru12.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru13.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru14.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru15.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru16.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru17.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru18.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru19.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru20.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru21.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru22.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru23.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru24.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru25.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru26.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru27.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru28.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru29.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru30.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru31.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru32.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru33.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru34.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru35.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru36.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru37.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru38.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru39.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru40.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru41.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru42.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru43.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru44.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru45.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru46.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru47.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru48.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru49.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru50.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru51.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru52.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru53.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru54.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru55.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru56.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru57.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru58.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru59.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru60.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/mmd_Melt_motion.anim
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru.skmesh
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru0.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru1.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru2.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru3.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru4.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru5.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru6.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru7.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru.skeleton
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru0.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru1.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru2.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru3.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru4.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru5.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru6.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru7.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru8.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru9.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru10.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru11.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru12.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru13.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru14.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru15.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru16.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru17.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru18.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru19.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru20.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru21.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru22.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru23.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru24.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru25.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru26.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru27.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru28.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru29.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru30.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru31.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru32.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru33.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru34.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru35.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru36.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru37.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru38.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru39.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru40.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru41.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru42.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru43.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru44.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru45.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru46.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru47.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru48.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru49.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru50.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru51.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru52.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru53.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru54.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru55.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru56.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru57.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru58.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru59.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru60.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/mmd_Melt_motion.anim
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru.skmesh
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru0.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru1.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru2.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru3.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru4.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru5.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru6.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru7.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru.skeleton
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru0.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru1.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru2.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru3.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru4.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru5.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru6.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru7.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru8.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru9.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru10.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru11.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru12.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru13.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru14.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru15.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru16.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru17.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru18.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru19.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru20.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru21.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru22.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru23.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru24.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru25.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru26.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru27.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru28.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru29.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru30.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru31.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru32.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru33.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru34.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru35.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru36.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru37.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru38.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru39.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru40.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru41.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru42.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru43.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru44.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru45.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru46.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru47.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru48.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru49.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru50.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru51.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru52.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru53.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru54.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru55.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru56.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru57.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru58.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru59.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru60.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/mmd_Melt_motion.anim
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru.skmesh
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru0.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru1.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru2.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru3.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru4.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru5.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru6.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru7.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 63] Already Created Source - ../../_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru.skeleton
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru0.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru1.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru2.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru3.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru4.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru5.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru6.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru7.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru8.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru9.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru10.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru11.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru12.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru13.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru14.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru15.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru16.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru17.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru18.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru19.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru20.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru21.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru22.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru23.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru24.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru25.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru26.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru27.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru28.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru29.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru30.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru31.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru32.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru33.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru34.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru35.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru36.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru37.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru38.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru39.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru40.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru41.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru42.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru43.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru44.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru45.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru46.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru47.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru48.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru49.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru50.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru51.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru52.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru53.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru54.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru55.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru56.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru57.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru58.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru59.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/kyaru/kyaru60.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 68] Create Source - ../../_Assets/Model/mmd_Melt_motion.anim

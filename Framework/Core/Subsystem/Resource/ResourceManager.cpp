@@ -18,6 +18,7 @@ bool ResourceManager::Init()
 	_map_resources.insert(std::make_pair(IResource::TypeCode::Skeleton, Resources()));
 	_map_resources.insert(std::make_pair(IResource::TypeCode::Material, Resources()));
 	_map_resources.insert(std::make_pair(IResource::TypeCode::Animation, Resources()));
+	_map_resources.insert(std::make_pair(IResource::TypeCode::Morph, Resources()));
 	return true;
 }
 

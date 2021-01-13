@@ -52,6 +52,7 @@
     <ClInclude Include="Framework.h" />
     <ClInclude Include="MMD2FBX.h" />
     <ClInclude Include="VMD2Binary.h" />
+    <ClInclude Include="Resource\Morph.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Subsystem\Function\Thread.cpp" />
@@ -97,5 +98,6 @@
     <ClCompile Include="MMD2FBX.cpp" />
     <ClCompile Include="MMD2FBX_EX.cpp" />
     <ClCompile Include="VMD2Binary.cpp" />
+    <ClCompile Include="Resource\Morph.cpp" />
   </ItemGroup>
 </Project>

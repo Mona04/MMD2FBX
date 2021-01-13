@@ -46,4 +46,5 @@ typedef unsigned int uint;
 #define Extension_MaterialW L".material"
 #define Extension_SkeletonW L".skeleton"
 #define Extension_TextureW L".texture"
+#define Extension_MorphW L".morph"
 #define Extension_AnimationW L".anim"

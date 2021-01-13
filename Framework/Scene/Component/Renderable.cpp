@@ -4,9 +4,12 @@
 #include "Resource/Mesh.h"
 #include "Resource/SkeletalMesh.h"
 #include "Resource/Material.h"
+#include "Resource/Morph.h"
 #include "Core/Subsystem/Resource/ResourceManager.h"
 
 #include "Util/FileSystem.h"
+
+#include "Core/DirectX/0_IADesc/Input_Desc.h"
 
 
 using namespace Framework;
@@ -40,8 +43,9 @@ void Renderable::Clear()
 	_meshes.shrink_to_fit();
 	_materials.clear();
 	_materials.shrink_to_fit();
-}
+	_morphs.clear();
 
+}
 
 void Renderable::SetMeshes(std::vector<std::wstring_view>& paths)
 {
@@ -62,11 +66,11 @@ void Renderable::AddMesh(std::wstring_view path)
 {
 	std::shared_ptr<Mesh> result;
 	auto extension = FileSystem::GetFileExtensionFromPath(path);
-	if(extension ==  Extension_MeshW)
+	if (extension == Extension_MeshW)
 		result = _meshes.emplace_back(_resourceManager->GetResource<Mesh>(path));
-	else if(extension == Extension_SkMeshW)
+	else if (extension == Extension_SkMeshW)
 		result = _meshes.emplace_back(_resourceManager->GetResource<SkeletalMesh>(path));
-	
+
 	if (!result)
 		LOG_WARNING("Invalid new Mesh. Check Path or File.");
 }
@@ -120,6 +124,39 @@ void Renderable::DeleteMaterial(uint i)
 		}
 	}
 }
+
+void Renderable::SetMorphs(std::vector<std::wstring_view>& paths)
+{
+	_morphs.clear();
+
+	for (const auto& path : paths)
+		AddMorph(path);
+}
+
+void Renderable::AddMorph(std::wstring_view path)
+{
+	auto new_morph = _resourceManager->GetResource<Morph>(path);
+	if (new_morph)
+		_morphs[new_morph->Get_MorphName()] = Morph_Package(0.f, new_morph);
+	else
+		LOG_WARNING("Invalid new Morph. Check Path or File.");
+}
+
+void Renderable::DeleteMorph(uint i)
+{
+	auto iter = _morphs.begin();
+	for (int ii = 0; ii < _morphs.size(); ii++, iter++)
+	{
+		if (ii = i)
+		{
+			_morphs.erase(iter);
+			break;
+		}
+	}
+}
+
+
+// ============ Hard Code Renderable ================================
 
 void Renderable::SetRenderMesh()
 {

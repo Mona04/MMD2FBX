@@ -548,6 +548,7 @@ void MMD2FBX::SaveAnimation(FbxScene* pScene, FbxNode* node_bone_root)
 				{
 				case 0: 
 					lCurve = boneNode_array[bone_index]->LclTranslation.GetCurve(lAnimLayer, curve_channels[channel_index], true); 
+					lCurve->KeyClear();
 					lCurve->KeyModifyBegin();
 					for (const auto& frame : channel_data._posKeys)
 					{
@@ -560,6 +561,7 @@ void MMD2FBX::SaveAnimation(FbxScene* pScene, FbxNode* node_bone_root)
 					break;
 				case 1: 
 					lCurve = boneNode_array[bone_index]->LclScaling.GetCurve(lAnimLayer, curve_channels[channel_index], true);
+					lCurve->KeyClear();
 					lCurve->KeyModifyBegin();
 					for (const auto& frame : channel_data._sclKeys)
 					{
@@ -572,6 +574,7 @@ void MMD2FBX::SaveAnimation(FbxScene* pScene, FbxNode* node_bone_root)
 					break;					
 				case 2:
 					lCurve = boneNode_array[bone_index]->LclRotation.GetCurve(lAnimLayer, curve_channels[channel_index], true);
+					lCurve->KeyClear();
 					lCurve->KeyModifyBegin();
 					for (const auto& frame : channel_data._rotKeys)
 					{

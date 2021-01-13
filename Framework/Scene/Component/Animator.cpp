@@ -110,18 +110,18 @@ void Animator::Animate()
 	}
 }
 
-Animation_Key Animator::Get_KeyFrame_Matrix(int index)
+Bone_Key Animator::Get_KeyFrame_Matrix(int index)
 {
 	if (_animation == nullptr)
 	{
 		LOG_WARNING("No Animator");
-		return Animation_Key();
+		return Bone_Key();
 	}
 
 	auto& channel = _animation->Get_Channel(index);
 
 	if (channel.keys.size() <= 0)
-		return Animation_Key();
+		return Bone_Key();
 	else if (channel.keys.size() == 1)
 		return channel.Get_Key(0);
 
@@ -130,7 +130,7 @@ Animation_Key Animator::Get_KeyFrame_Matrix(int index)
 	return Interporate_Key(channel.Get_Key(result.first), channel.Get_Key(result.second));
 }
 
-std::pair<uint, uint> Animator::Update_Key_Index(uint frame_index, const Animation_Channel& channel)
+std::pair<uint, uint> Animator::Update_Key_Index(uint frame_index, const Bone_Channel& channel)
 {
 	uint maximum_index = channel.keys.size();
 	uint& current_index = _current_key_index_map[frame_index];
@@ -158,9 +158,9 @@ std::pair<uint, uint> Animator::Update_Key_Index(uint frame_index, const Animati
 	return { current_index, next_index };
 }
 
-Animation_Key Animator::Interporate_Key(const Animation_Key& cur,const Animation_Key& after)
+Bone_Key Animator::Interporate_Key(const Bone_Key& cur,const Bone_Key& after)
 {
-	Animation_Key result;
+	Bone_Key result;
 	float delta = _current_accumulated_delta_time_ms / _animation->Get_MsPerTic();
 	delta += (_current_frame - cur.frame) > 0 ? (_current_frame - cur.frame - 1) : (_animation->Get_Duration() - cur.frame + _current_frame - 1);	
 	delta /= (after.frame - cur.frame) > 0 ? (after.frame - cur.frame) : (_animation->Get_Duration() - cur.frame + after.frame);

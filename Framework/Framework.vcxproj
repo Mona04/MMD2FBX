@@ -48,6 +48,7 @@
     <ClInclude Include="Resource\IResource.h" />
     <ClInclude Include="Resource\Material.h" />
     <ClInclude Include="Resource\Mesh.h" />
+    <ClInclude Include="Resource\Morph.h" />
     <ClInclude Include="Resource\SkeletalMesh.h" />
     <ClInclude Include="Resource\Skeletion.h" />
     <ClInclude Include="Resource\Texture.h" />
@@ -104,6 +105,7 @@
     <ClCompile Include="Resource\Importer\MMD_Importer_Transform.cpp" />
     <ClCompile Include="Resource\Material.cpp" />
     <ClCompile Include="Resource\Mesh.cpp" />
+    <ClCompile Include="Resource\Morph.cpp" />
     <ClCompile Include="Resource\SkeletalMesh.cpp" />
     <ClCompile Include="Resource\Skeletion.cpp" />
     <ClCompile Include="Resource\Texture.cpp" />

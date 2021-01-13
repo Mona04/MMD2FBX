@@ -1,15 +1,15 @@
 #pragma once
 #include <string>
 #include <memory>
-#include "Core/Subsystem/Context.h"
-#include "Util/FileStream.h"
+#include "Framework/Core/Subsystem/Context.h"
+#include "Framework/Util/FileStream.h"
 
 namespace Framework
 {
 	class IResource
 	{
 	public:
-		enum class TypeCode : unsigned int { None, Texture, Script, Mesh, SkeletalMesh, Skeleton, Animation, Material, };
+		enum class TypeCode : unsigned int { None, Texture, Script, Mesh, SkeletalMesh, Skeleton, Animation, Material, Morph };
 		template<typename T> static constexpr TypeCode DeduceType();
 
 	public:
@@ -34,12 +34,13 @@ namespace Framework
 	template<typename T>
 	inline constexpr IResource::TypeCode IResource::DeduceType() { return TypeCode::None; }
 
-	#define RegisterResourceType(T, Code) template<> inline constexpr IResource::TypeCode IResource::DeduceType<T>() { return Code; }
+#define RegisterResourceType(T, Code) template<> inline constexpr IResource::TypeCode IResource::DeduceType<T>() { return Code; }
 	RegisterResourceType(class Texture, TypeCode::Texture)
-	RegisterResourceType(class Script, TypeCode::Script)
-	RegisterResourceType(class Mesh, TypeCode::Mesh)
-	RegisterResourceType(class SkeletalMesh, TypeCode::SkeletalMesh)
-	RegisterResourceType(class Skeleton, TypeCode::Skeleton)
-	RegisterResourceType(class Animation, TypeCode::Animation)
-	RegisterResourceType(class Material, TypeCode::Material)
+		RegisterResourceType(class Script, TypeCode::Script)
+		RegisterResourceType(class Mesh, TypeCode::Mesh)
+		RegisterResourceType(class SkeletalMesh, TypeCode::SkeletalMesh)
+		RegisterResourceType(class Skeleton, TypeCode::Skeleton)
+		RegisterResourceType(class Animation, TypeCode::Animation)
+		RegisterResourceType(class Material, TypeCode::Material)
+		RegisterResourceType(class Morph, TypeCode::Morph)
 }

@@ -26,9 +26,9 @@ namespace Framework
 	protected:
 		void Animate();
 
-		struct Animation_Key Get_KeyFrame_Matrix(int index);
-		std::pair<uint, uint> Update_Key_Index(uint frame_index, const struct Animation_Channel& channel);
-		struct Animation_Key Interporate_Key(const Animation_Key& before, const Animation_Key& after);
+		struct Bone_Key Get_KeyFrame_Matrix(int index);
+		std::pair<uint, uint> Update_Key_Index(uint frame_index, const struct Bone_Channel& channel);
+		struct Bone_Key Interporate_Key(const Bone_Key& before, const Bone_Key& after);
 
 
 	protected:

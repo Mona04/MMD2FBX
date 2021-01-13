@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+#include <map>
 
 namespace Framework
 {
@@ -9,8 +11,9 @@ namespace Framework
 	class Material;
 	class Transform;
 	class Animator;
-	struct Animation_Key;
-	struct Animation_Channel;
+	struct Bone_Key;
+	struct Bone_Channel;
+	struct Morph_Channel;
 }
 
 class VMD2Binary
@@ -26,7 +29,8 @@ public:
 	bool Export(const std::wstring_view pFile, Framework::Context* context);
 
 private:
-	std::vector<Framework::Animation_Channel> _channels_data;
+	std::vector<Framework::Bone_Channel> _channels_data;
+	std::map<std::wstring, Framework::Morph_Channel> _morph_channels_data;
 	Framework::Actor* _actor;
 
 	float _ms_per_tick = -1;

@@ -2,31 +2,38 @@
 #include "MMD_Importer.h"
 #include "MMD/CustomMMDHelper.h"
 
-#include "Core/DirectX/0_IADesc/Input_Desc.h"
+#include "Framework/Core/DirectX/0_IADesc/Input_Desc.h"
 
-#include "Core/Subsystem/Resource/ResourceManager.h"
+#include "Framework/Core/Subsystem/Resource/ResourceManager.h"
 
-#include "Resource/Mesh.h"
-#include "Resource/SkeletalMesh.h"
-#include "Resource/Skeletion.h"
-#include "Resource/Material.h"
-#include "Resource/Animation.h"
+#include "framework/Resource/Mesh.h"
+#include "Framework/Resource/SkeletalMesh.h"
+#include "framework/Resource/Skeletion.h"
+#include "Framework/Resource/Material.h"
+#include "Framework/Resource/Animation.h"
+#include "Framework/Resource/Morph.h"
 
-#include "Scene/Actor.h"
-#include "Scene/Component/Renderable.h"
-#include "Scene/Component/Transform.h"
-#include "Scene/Component/Animator.h"
-#include "Scene/Component/IKSolver.h"
+#include "Framework/Scene/Actor.h"
+#include "Framework/Scene/Component/Renderable.h"
+#include "Framework/Scene/Component/Transform.h"
+#include "Framework/Scene/Component/Animator.h"
+#include "Framework/Scene/Component/IKSolver.h"
 
 using namespace Framework;
 using namespace pmx;
 
+#define MMD_COMMON_DIRECTORYW (Relative_BasisW + L"_Assets/Texture/MMD/Common/")
 
 MMD_Importer::MMD_Importer()
 {
 }
 
 MMD_Importer::~MMD_Importer()
+{
+	Clear();
+}
+
+void MMD_Importer::Clear()
 {
 	if (_fb) {
 		_fb->close();
@@ -40,7 +47,7 @@ bool MMD_Importer::Load_Model(std::wstring_view path, Actor* actor, Context* con
 {
 	if (FileSystem::GetFileExtensionFromPath(path) != L".pmx")
 	{
-		LOG_ERROR("Invalid File form");
+		LOG_ERROR("Invalid Form");
 		return false;
 	}
 	if (FileSystem::IsExistFile(path) == false)
@@ -66,6 +73,10 @@ bool MMD_Importer::Load_Model(std::wstring_view path, Actor* actor, Context* con
 	LoadRenderable(renderable);
 	LoadTransform(transform);
 	iksolver->Init();
+	LoadMorph(renderable);
+	LoadPhysics();
+
+	Clear();
 
 	return true;
 }
@@ -77,7 +88,7 @@ bool MMD_Importer::Init_PMX(std::wstring_view path)
 	_basePathName = FileSystem::GetFileDirectoryFromPath(path) + FileSystem::GetIntactFileNameFromPath(path);
 
 	_fb = new std::filebuf();
-	if (!_fb->open(std::wstring(path).data(), std::ios::in | std::ios::binary))
+	if (!_fb->open(path.data(), std::ios::in | std::ios::binary))
 	{
 		LOG_WARNING("Can't open the " + FileSystem::ToString(path) + ", please check");
 		return false;
@@ -321,23 +332,28 @@ bool MMD_Importer::LoadMaterial(std::shared_ptr<Material> material, const std::v
 	material->Set_MaterialName(ReadString(_stream, _setting.encoding));
 	material->Set_MaterialEnglishName(ReadString(_stream, _setting.encoding));
 
-	_stream->read((char*)&material->Get_DiffuseColor(), sizeof(float) * 4);
-	_stream->read((char*)&material->Get_SpecularColor(), sizeof(float) * 3);
-	_stream->read((char*)&material->Get_Specularity(), sizeof(float));
-	_stream->read((char*)&material->Get_AmbientColor(), sizeof(float) * 3);
-	_stream->read((char*)&material->Get_DrawMode(), sizeof(uint8_t));
-	_stream->read((char*)&material->Get_EdgeColor(), sizeof(float) * 4);
-	_stream->read((char*)&material->Get_EdgeSize(), sizeof(float));
+	auto& material_common = material->Get_Material_Common();
+	auto& material_mmd = material->Get_Material_MMD();
+
+	_stream->read((char*)&material_common._diffuse, sizeof(float) * 4);
+	_stream->read((char*)&material_common._specular, sizeof(float) * 3);
+	_stream->read((char*)&material_common._specularlity, sizeof(float));
+	_stream->read((char*)&material_common._ambient, sizeof(float) * 3);
+	_stream->read((char*)&material_mmd._draw_mode, sizeof(uint8_t));
+	_stream->read((char*)&material_common._edge_color, sizeof(float) * 4);
+	_stream->read((char*)&material_common._edge_size, sizeof(float));
 
 	int diffuse_texture_index = ReadIndex(_stream, _setting.texture_index_size);
 	int sphere_texture_index = ReadIndex(_stream, _setting.texture_index_size);
 	int toon_texture_index = -1;
-	_stream->read((char*)&material->Get_Sphere_op_mode(), sizeof(uint8_t));
-	_stream->read((char*)&material->Get_Toon_Mode(), sizeof(uint8_t));
+	_stream->read((char*)&material_mmd._sphere_op_mode, sizeof(uint8_t));
+	_stream->read((char*)&material_mmd._toon_mode, sizeof(uint8_t));
 
-	if (material->Get_Toon_Mode() == PMXToonMode::Common)
+	if (material_mmd._toon_mode == PMXToonMode::Common)
 	{
-		_stream->read((char*)&toon_texture_index, sizeof(uint8_t));
+		uint8_t tmp;
+		_stream->read((char*)&tmp, sizeof(uint8_t));
+		toon_texture_index = tmp;
 	}
 	else {
 		toon_texture_index = ReadIndex(_stream, _setting.texture_index_size);
@@ -351,7 +367,128 @@ bool MMD_Importer::LoadMaterial(std::shared_ptr<Material> material, const std::v
 	if (sphere_texture_index >= 0)
 		material->Set_Texture(_basePath + texturesPath[sphere_texture_index], Material::Type_Texture::Sphere);
 	if (toon_texture_index >= 0)
-		material->Set_Texture(_basePath + texturesPath[toon_texture_index], Material::Type_Texture::Toon);
-
+	{
+		if (material_mmd._toon_mode == PMXToonMode::Separate)
+			material->Set_Texture(_basePath + texturesPath[toon_texture_index], Material::Type_Texture::Toon);
+		else if (material_mmd._toon_mode == PMXToonMode::Common)
+		{
+			std::wstringstream ss;
+			ss << MMD_COMMON_DIRECTORYW + L"toon" << std::setfill(L'0') << std::setw(2) << (toon_texture_index + 1) << L".bmp";
+			material->Set_Texture(ss.str(), Material::Type_Texture::Toon);
+		}
+	}
 	return true;
+}
+
+bool MMD_Importer::LoadMorph(Renderable* renderable)
+{
+	auto mgr = _context->GetSubsystem<ResourceManager>();
+
+	int morph_count = 0;
+	_stream->read((char*)&morph_count, sizeof(int));
+	for (int i = 0; i < morph_count; i++)
+	{
+		std::shared_ptr<Morph> morph = std::make_shared<Morph>(_context);
+
+		std::wstring morph_name;
+		std::wstring morph_english_name;
+		pmx::MorphCategory category;
+		pmx::MorphType morph_type;
+		int offset_count;
+
+		morph_name = ReadString(_stream, _setting.encoding);
+		morph_english_name = ReadString(_stream, _setting.encoding);
+		_stream->read((char*)&category, sizeof(pmx::MorphCategory));
+		_stream->read((char*)&morph_type, sizeof(pmx::MorphType));
+		_stream->read((char*)&offset_count, sizeof(int));
+
+		morph->Set_MorphName(morph_name);
+		morph->Set_MorphCategory(static_cast<Morph::MorphCategory>(category));
+
+		switch (morph_type)
+		{
+		case pmx::MorphType::Group:
+		{
+			PmxMorphGroupOffset offset;
+			auto& dst_offsets = morph->Get_GroupOffsets();
+			for (int i = 0; i < offset_count; i++)
+			{
+				offset.Read(_stream, &_setting);
+				dst_offsets.push_back({ offset.morph_index, offset.morph_weight });
+			}
+			morph->Set_MorphType(Morph::MorphType::Group);
+		} break;
+		case pmx::MorphType::Vertex:
+		{
+			PmxMorphVertexOffset offset;
+			auto& dst_offsets = morph->Get_VertexOffsets();
+			for (int i = 0; i < offset_count; i++)
+			{
+				offset.Read(_stream, &_setting);
+				Vector3 tmp = Vector3(offset.position_offset[0], offset.position_offset[1], offset.position_offset[2]);
+				PreProcessing_MMD_Vector3(tmp, true);
+				dst_offsets.push_back({ offset.vertex_index, tmp });
+			}
+			morph->Set_MorphType(Morph::MorphType::Vertex);   // 1:1 대응으로 안해놔서 따로따로 해야함
+			break;
+		}
+		case pmx::MorphType::Bone:
+		{
+			auto bone_offsets = std::make_unique<PmxMorphBoneOffset[]>(offset_count);
+			for (int i = 0; i < offset_count; i++)
+			{
+				bone_offsets[i].Read(_stream, &_setting);
+			}
+			morph->Set_MorphType(Morph::MorphType::Bone);
+			break;
+		}
+		case pmx::MorphType::Matrial:
+		{
+			PmxMorphMaterialOffset offset;
+			auto& dst_offsets = morph->Get_MaterialOffsets();
+			for (int i = 0; i < offset_count; i++)
+			{
+				offset.Read(_stream, &_setting);
+				auto& dst = dst_offsets.emplace_back();
+				{
+					dst.material_index = offset.material_index;
+					dst.offset_operation = offset.offset_operation;
+					dst.diffuse = Color4(offset.diffuse[0], offset.diffuse[1], offset.diffuse[2], offset.diffuse[3]);
+					dst.specular = Vector3(offset.specular[0], offset.specular[1], offset.specular[2]);
+					dst.specularity = offset.specularity;
+					dst.ambient = Vector3(offset.ambient[0], offset.ambient[1], offset.ambient[2]);
+					dst.edge_color = Color4(offset.edge_color[0], offset.edge_color[1], offset.edge_color[2], offset.edge_color[3]);
+					dst.edge_size = offset.edge_size;
+					dst.texture_rgba = Color4(offset.texture_argb[1], offset.texture_argb[2], offset.texture_argb[3], offset.texture_argb[0]);
+					dst.sphere_texture_rgba = Color4(offset.sphere_texture_argb[1], offset.sphere_texture_argb[2], offset.sphere_texture_argb[3], offset.sphere_texture_argb[0]);
+					dst.toon_texture_rgba = Color4(offset.toon_texture_argb[1], offset.toon_texture_argb[2], offset.toon_texture_argb[3], offset.toon_texture_argb[0]);
+				}
+			}
+			morph->Set_MorphType(Morph::MorphType::Matrial);
+			break;
+		}
+		case pmx::MorphType::UV:
+		case pmx::MorphType::AdditionalUV1:
+		case pmx::MorphType::AdditionalUV2:
+		case pmx::MorphType::AdditionalUV3:
+		case pmx::MorphType::AdditionalUV4:
+		{
+			PmxMorphUVOffset offset;
+			auto dst_offsets = morph->Get_UVOffsets();
+			for (int i = 0; i < offset_count; i++)
+			{
+				offset.Read(_stream, &_setting);
+				dst_offsets.push_back({ offset.vertex_index, Vector2(offset.uv_offset[0], offset.uv_offset[1]) });
+			}
+			morph->Set_MorphType(Morph::MorphType::UV);
+			break;
+		}
+		default:
+			throw;
+		}
+
+
+		mgr->RegisterResource(morph, _basePathName + std::to_wstring(i) + Extension_MorphW);
+		renderable->AddMorph(morph->GetPath());
+	}
 }

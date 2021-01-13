@@ -30,6 +30,8 @@ namespace Framework
 		MMD_Importer();
 		~MMD_Importer();
 
+		void Clear();
+
 		bool Load_Model(std::wstring_view path, class Actor* actor, class Context* context);
 		bool Load_Animation(std::wstring_view path, class Actor* actor, class Context* context);
 
@@ -44,6 +46,8 @@ namespace Framework
 
 		bool LoadTexturePath(std::vector<std::wstring>& texturePaths);
 		bool LoadMaterial(std::shared_ptr<class Material> material, const std::vector<std::wstring>& texturePaths);
+		
+		bool LoadMorph(class Renderable* renderable);
 		// ============================================================
 
 		// =============== Transform ==================================
@@ -51,7 +55,7 @@ namespace Framework
 		bool LoadSkeleton(std::shared_ptr<class Skeleton> skeleton, std::vector<std::pair<int, int>>& bone_links);
 		bool LoadSkeleton_Resursive( std::shared_ptr<class Skeleton> skeletons, std::vector<std::pair<int, int>>& bone_links);
 
-		bool LoadMorph(std::shared_ptr<class Skeleton> skeletons);
+		bool LoadPhysics();
 		// =============== Transform =================================
 
 
