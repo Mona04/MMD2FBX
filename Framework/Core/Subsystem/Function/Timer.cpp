@@ -1,18 +1,13 @@
 #include "Framework.h"
 #include "Timer.h"
 
-#define FPS 1.0f/61.0f
-#define RFPS 61.0f
 
 using namespace Framework;
 
 Timer::Timer(Context* context)
 	: ISubsystem(context)
 	, deltaTimeMs(0.0f)
-	, deltaTimeSec(0.0f)
 	, deltaTimeMs_Cumulated(0.0f)
-	, deltaTimeSec_Cumulated(0.0f)
-	, deltaTimeSec_Return(0.0f)
 	, deltaTimeMs_Return(0.0f)
 	, deltaTime1Sec(0.0f)
 {
@@ -31,35 +26,32 @@ void Timer::Update()
 	prevTime = curTime;
 
 	deltaTimeMs = static_cast<float>(ms.count());
-	deltaTimeSec = static_cast<float>(ms.count() * 0.001);
 
 	deltaTimeMs_Cumulated += deltaTimeMs;
-	deltaTimeSec_Cumulated += deltaTimeSec;
 
-	if (deltaTimeSec_Cumulated > FPS)
+	if (deltaTimeMs_Cumulated > FPms)
 	{
 		isUpdatedFPS = true;
 
-		deltaTimeMs_Return = deltaTimeMs_Cumulated;
-		deltaTimeSec_Return = deltaTimeSec_Cumulated;
+		deltaTimeMs_Return = deltaTimeMs_Cumulated; // important
 
-		deltaTimeSec_Cumulated = 0;
-		deltaTimeMs_Cumulated = 0;
-		deltaNumUpdated += 1;
-
-		if (deltaNumUpdated > RFPS)
+		while (deltaTimeMs_Cumulated > FPms)
 		{
-			deltaTimeSec_Cumulated = 0;// int(deltaNumUpdated) % int(RFPS);
-			deltaTimeMs_Cumulated = 0;//int(deltaNumUpdated) % int(RFPS);
+			if (deltaTimeMs_Cumulated > 10000)
+				deltaTimeMs_Cumulated -= 10000 * FPS;
+			else
+				deltaTimeMs_Cumulated -= FPS * 1000.f;
 		}
+		deltaNumUpdated += 1;
 	}
 	else
 	{
+		deltaTimeMs_Return = 0;
 		isUpdatedFPS = false;
 	}
 
-	deltaTime1Sec += deltaTimeSec;
-	
+	deltaTime1Sec += deltaTimeMs * 0.001f;
+
 	if (deltaTime1Sec > 1.0f)
 	{
 		deltaTime1Sec = float(int(deltaTime1Sec) % 1);

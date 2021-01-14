@@ -13,7 +13,6 @@ namespace Framework
 		bool Init() override;
 
 		const float& GetDeltaTimeMs() const { return deltaTimeMs_Return; }
-		const float& GetDeltaTimeSec() const { return deltaTimeSec_Return; }
 
 		void Update();
 
@@ -22,21 +21,22 @@ namespace Framework
 
 	private:
 		float deltaTimeMs;
-		float deltaTimeSec;
 
 		// just for calculate in class
 		float deltaTimeMs_Cumulated;
-		float deltaTimeSec_Cumulated;
 
-		// for return delta time
+		// to return delta time
 		float deltaTimeMs_Return;
-		float deltaTimeSec_Return;
 
+		// to calc FPS
 		float deltaTime1Sec;
 		int deltaNumUpdated;
 
 		bool isUpdatedFPS;
 
 		std::chrono::high_resolution_clock::time_point prevTime;
+
+		const float FPS = 1.0f / 60.0f;
+		const float FPms = 1000.f / 60.0f;
 	};
 }
