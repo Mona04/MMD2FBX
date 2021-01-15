@@ -135,7 +135,7 @@ bool MMD_Importer::LoadRenderable(Renderable* renderable)
 
 		LoadVertices(mesh);
 		LoadIndices(mesh);
-		CalcTangent(mesh);
+		//CalcTangent(mesh);
 
 		mgr->RegisterResource(mesh, _basePathName + Extension_SkMeshW);
 		renderable->AddMesh(mesh->GetPath());
