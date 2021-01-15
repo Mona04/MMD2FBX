@@ -287,7 +287,9 @@ void MMD_Importer::CalcTangent(std::shared_ptr<class SkeletalMesh> mesh)
 
 		Vector3 normal = vertices[index0].normal;
 
-		normal = Vector3::Cross(e0, e1).Normalize(); // adsf???
+		auto calced_normal = Vector3::Cross(e0, e1).Normalize();
+		if (calced_normal.Length() > 0.5)
+			normal = calced_normal;
 
 		Vector3 tangent;
 		tangent.x = r * (v1 * e0.x - v0 * e1.x);
