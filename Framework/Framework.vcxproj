@@ -25,6 +25,8 @@
     <ClInclude Include="Core\Subsystem\Function\Thread.h" />
     <ClInclude Include="Core\Subsystem\Function\Timer.h" />
     <ClInclude Include="Core\Subsystem\ISubsystem.h" />
+    <ClInclude Include="Core\Subsystem\Physics\PhysicsManager.h" />
+    <ClInclude Include="Core\Subsystem\Physics\Physics_Ect.h" />
     <ClInclude Include="Core\Subsystem\Resource\ResourceManager.h" />
     <ClInclude Include="Core\Subsystem\Scene\MMD2FBX_Converter.h" />
     <ClInclude Include="Core\Subsystem\Scene\SceneManager.h" />
@@ -34,6 +36,7 @@
     <ClInclude Include="Math\Matrix.h" />
     <ClInclude Include="Math\Matrix_V.h" />
     <ClInclude Include="Math\Quaternion.h" />
+    <ClInclude Include="Math\UInt8Vector2.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Math\Vector4.h" />
@@ -48,25 +51,27 @@
     <ClInclude Include="Resource\IResource.h" />
     <ClInclude Include="Resource\Material.h" />
     <ClInclude Include="Resource\Mesh.h" />
-    <ClInclude Include="Resource\Morph.h" />
+    <ClInclude Include="Resource\Morphs.h" />
+    <ClInclude Include="Resource\RBInfo.h" />
     <ClInclude Include="Resource\SkeletalMesh.h" />
     <ClInclude Include="Resource\Skeletion.h" />
     <ClInclude Include="Resource\Texture.h" />
     <ClInclude Include="Scene\Actor.h" />
     <ClInclude Include="Scene\Chimera_Object.h" />
     <ClInclude Include="Scene\Component\Animator.h" />
-    <ClInclude Include="Scene\Component\Camera.h" />
     <ClInclude Include="Scene\Component\IComponent.h" />
     <ClInclude Include="Scene\Component\IKSolver.h" />
-    <ClInclude Include="Scene\Component\Light.h" />
     <ClInclude Include="Scene\Component\Renderable.h" />
+    <ClInclude Include="Scene\Component\RigidBody.h" />
     <ClInclude Include="Scene\Component\Transform.h" />
     <ClInclude Include="Scene\Scene.h" />
+    <ClInclude Include="Scene\Component\Setting_Actor.h" />
     <ClInclude Include="Util\EventSystem.h" />
     <ClInclude Include="Util\FileStream.h" />
     <ClInclude Include="Util\FileSystem.h" />
     <ClInclude Include="Util\Geomerty_Generator.h" />
     <ClInclude Include="Util\GUIDGenerator.h" />
+    <ClInclude Include="Util\Helper_BulletPhysics.h" />
     <ClInclude Include="Util\Log\DebugLine.h" />
     <ClInclude Include="Util\Log\ILogger.h" />
     <ClInclude Include="Util\Log\Log.h" />
@@ -76,6 +81,8 @@
     <ClCompile Include="Core\Engine.cpp" />
     <ClCompile Include="Core\Subsystem\Function\Thread.cpp" />
     <ClCompile Include="Core\Subsystem\Function\Timer.cpp" />
+    <ClCompile Include="Core\Subsystem\Physics\PhysicsManager.cpp" />
+    <ClCompile Include="Core\Subsystem\Physics\Physics_Ect.cpp" />
     <ClCompile Include="Core\Subsystem\Resource\ResourceManager.cpp" />
     <ClCompile Include="Core\Subsystem\Scene\MMD2FBX_Converter.cpp" />
     <ClCompile Include="Core\Subsystem\Scene\SceneManager.cpp" />
@@ -100,23 +107,26 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Resource\Importer\MMD_Importer.cpp" />
     <ClCompile Include="Resource\Importer\MMD_Importer_Animation.cpp" />
+    <ClCompile Include="Resource\Importer\MMD_Importer_Physics.cpp" />
     <ClCompile Include="Resource\Importer\MMD_Importer_Renderable.cpp" />
     <ClCompile Include="Resource\Importer\MMD_Importer_Transform.cpp" />
     <ClCompile Include="Resource\Material.cpp" />
     <ClCompile Include="Resource\Mesh.cpp" />
-    <ClCompile Include="Resource\Morph.cpp" />
+    <ClCompile Include="Resource\Morphs.cpp" />
+    <ClCompile Include="Resource\RBInfo.cpp" />
     <ClCompile Include="Resource\SkeletalMesh.cpp" />
     <ClCompile Include="Resource\Skeletion.cpp" />
     <ClCompile Include="Resource\Texture.cpp" />
     <ClCompile Include="Scene\Actor.cpp" />
     <ClCompile Include="Scene\Component\Animator.cpp" />
-    <ClCompile Include="Scene\Component\Camera.cpp" />
     <ClCompile Include="Scene\Component\IKSolver.cpp" />
-    <ClCompile Include="Scene\Component\Light.cpp" />
     <ClCompile Include="Scene\Component\Renderable.cpp" />
+    <ClCompile Include="Scene\Component\RigidBody.cpp" />
     <ClCompile Include="Scene\Component\Transform.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
+    <ClCompile Include="Scene\Component\Setting_Actor.cpp" />
     <ClCompile Include="Util\EventSystem.cpp" />
     <ClCompile Include="Util\FileStream.cpp" />
     <ClCompile Include="Util\FileSystem.cpp" />
@@ -199,7 +209,7 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;FBXSDK_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>Framework.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\_Libraries\FbxSDK\;$(SolutionDir)..\_Libraries\;$(SolutionDir);$(SolutionDir)Framework\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\_Libraries\FbxSDK\;$(SolutionDir)\_Libraries\;$(SolutionDir);$(SolutionDir)Framework\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -207,8 +217,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>Move /Y  "$(OutDir)$(ProjectName).lib"  "$(SolutionDir)..\_Libraries\lib\"
-Move /Y  "$(OutDir)$(ProjectName).pdb"  "$(SolutionDir)..\_Libraries\lib\"</Command>
+      <Command>Move /Y  "$(OutDir)$(ProjectName).lib"  "$(SolutionDir)_Libraries\lib\"
+Move /Y  "$(OutDir)$(ProjectName).pdb"  "$(SolutionDir)_Libraries\lib\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -254,7 +264,7 @@ Move /Y  "$(OutDir)$(ProjectName).pdb"  "$(SolutionDir)..\_Libraries\lib\"</Comm
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>Framework.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\_Libraries\FbxSDK\;$(SolutionDir)..\_Libraries\;$(SolutionDir);$(SolutionDir)Framework\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\_Libraries\FbxSDK\;$(SolutionDir)\_Libraries\;$(SolutionDir);$(SolutionDir)Framework\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -263,7 +273,7 @@ Move /Y  "$(OutDir)$(ProjectName).pdb"  "$(SolutionDir)..\_Libraries\lib\"</Comm
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>Move /Y  "$(OutDir)$(ProjectName).lib"  "$(SolutionDir)..\_Libraries\lib\"</Command>
+      <Command>Move /Y  "$(OutDir)$(ProjectName).lib"  "$(SolutionDir)_Libraries\lib\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

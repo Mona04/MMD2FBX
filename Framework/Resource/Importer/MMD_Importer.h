@@ -3,7 +3,7 @@
 #include <string>
 #include <list>
 #include "MMD/Pmx.h"
-#include "Core/DirectX/0_IADesc/Input_Desc.h"
+#include "Framework/Core/DirectX/0_IADesc/Input_Desc.h"
 
 namespace Framework
 {
@@ -46,7 +46,7 @@ namespace Framework
 
 		bool LoadTexturePath(std::vector<std::wstring>& texturePaths);
 		bool LoadMaterial(std::shared_ptr<class Material> material, const std::vector<std::wstring>& texturePaths);
-		
+
 		bool LoadMorph(class Renderable* renderable);
 		// ============================================================
 
@@ -54,21 +54,25 @@ namespace Framework
 		bool LoadTransform(class Transform* transform);
 		bool LoadSkeleton(std::shared_ptr<class Skeleton> skeleton, std::vector<std::pair<int, int>>& bone_links);
 		bool LoadSkeleton_Resursive( std::shared_ptr<class Skeleton> skeletons, std::vector<std::pair<int, int>>& bone_links);
-
-		bool LoadPhysics();
 		// =============== Transform =================================
 
 
 		// =============== Animation =================================
 		bool Init_VMD(std::wstring_view path);
 		bool LoadBoneFrame(std::shared_ptr<class Animation> animation, std::shared_ptr<class Skeleton> skeleton);
-		void CalcBezier(Vector2* desc, const uint8_t* src);
+		void CalcBezier(UInt8Vector2* desc, const uint8_t* src);
+		void CalcBezier(UInt8Vector2* desc, const char* src);
 
-		bool LoadFaceFrame(std::shared_ptr<class Animation> animation, std::shared_ptr<class Skeleton> skeleton);
-		bool LoadCameraFrame(std::shared_ptr<class Animation> animation, std::shared_ptr<class Skeleton> skeleton);
-		bool LoadLightFrame(std::shared_ptr<class Animation> animation, std::shared_ptr<class Skeleton> skeleton);
+		bool LoadFaceFrame(std::shared_ptr<class Animation> animation);
+		bool LoadCameraFrame(std::shared_ptr<class Animation> animation);
+		bool LoadLightFrame(std::shared_ptr<class Animation> animation);
 		bool LoadIKFrame(std::shared_ptr<class Animation> animation, std::shared_ptr<class Skeleton> skeleton);
+		// ===========================================================
 
+		// ============= Physics =====================================
+		bool LoadPhysics(class RigidBodys* rigidBodys);
+		bool LoadRigidBody(std::shared_ptr<class RBInfo> rbInfo);
+		bool LoadRBJoint(std::shared_ptr<class RBInfo> rbInfo);
 		// ===========================================================
 	private:
 		class Context* _context;

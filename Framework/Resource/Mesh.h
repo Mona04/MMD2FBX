@@ -18,13 +18,8 @@ namespace Framework
 		Mesh& operator=(Mesh&& rhs) = delete;
 
 		virtual bool LoadFromFile(std::wstring_view path) override;
-		virtual bool SaveToFile(std::wstring_view path) override;
+		virtual bool SaveToFile(std::wstring_view path) const override;
 		virtual void Clear() override;
-
-		void MakeCube();
-		void MakeGizmo();
-		void MakeScreenMesh();
-		void MakeGrid();
 
 		virtual std::vector<struct Vertex_MASTER>& GetVertices() { return _vertices; }
 		virtual std::vector<uint>& GetIndices() { return _indices; }

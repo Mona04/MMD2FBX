@@ -57,12 +57,13 @@ void LEngine::Create()
 	vmd_file_path = CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("Edit"), TEXT("Set MMD File"), WS_CHILD | WS_VISIBLE | ES_READONLY, 165, 50, 270, 20, hWnd, (HMENU)11, NULL, NULL);
 	vmd_folder_path = CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("Edit"), TEXT("Set Folder for Converting"), WS_CHILD | WS_VISIBLE | ES_READONLY, 165, 80, 270, 20, hWnd, (HMENU)12, NULL, NULL);
 
-	CreateWindowW(TEXT("static"), TEXT("Ms per Tick"), WS_CHILD | WS_VISIBLE | WS_TABSTOP, 10, 120, 90, 20, hWnd, (HMENU)20, hInstance, NULL);
-	ms_per_tick = CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("Edit"), TEXT("30"), WS_CHILD | WS_VISIBLE, 100, 120, 40, 20, hWnd, (HMENU)21, NULL, NULL);
+	CreateWindowW(TEXT("static"), TEXT("Tick per Ms"), WS_CHILD | WS_VISIBLE | WS_TABSTOP, 10, 120, 90, 20, hWnd, (HMENU)20, hInstance, NULL);
+	tick_per_ms = CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("Edit"), TEXT("30"), WS_CHILD | WS_VISIBLE, 100, 120, 40, 20, hWnd, (HMENU)21, NULL, NULL);
 	CreateWindowW(TEXT("static"), TEXT("Start Frame"), WS_CHILD | WS_VISIBLE | WS_TABSTOP, 160, 120, 90, 20, hWnd, (HMENU)20, hInstance, NULL);
 	frame_start = CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("Edit"), TEXT("0"), WS_CHILD | WS_VISIBLE, 250, 120, 40, 20, hWnd, (HMENU)22, NULL, NULL);
 	CreateWindowW(TEXT("static"), TEXT("End Frame"), WS_CHILD | WS_VISIBLE | WS_TABSTOP, 300, 120, 90, 20, hWnd, (HMENU)20, hInstance, NULL);
 	frame_end = CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("Edit"), TEXT("-1"), WS_CHILD | WS_VISIBLE, 330, 120, 40, 20, hWnd, (HMENU)23, NULL, NULL);
+	use_physics = CreateWindowW(TEXT("button"), TEXT("Use Physics"), WS_CHILD | WS_VISIBLE | BS_CHECKBOX, 430, 120, 100, 20, hWnd, (HMENU)24, hInstance, NULL);
 }
 
 void LEngine::Command(WPARAM wParam)
@@ -83,13 +84,13 @@ void LEngine::Command(WPARAM wParam)
 	}
 	case 1:
 		FileSystem::OpenFileDialogW(
-			[this](const std::wstring& path) { 
+			[this](const std::wstring& path) {
 				auto relative_path = FileSystem::GetRelativeFilePath(path);
 				auto path_part = relative_path.substr(relative_path.size() < 33 ? 0 : relative_path.size() - 33, relative_path.size() - 1);
 				_f_engine->Set_AnimPath(FileSystem::GetSlashPath(relative_path));
 				SendMessageW(vmd_file_path, WM_SETTEXT, 0, (LPARAM)(path_part.c_str()));
 				SendMessageW(vmd_folder_path, WM_SETTEXT, 0, (LPARAM)(L""));
-				SendMessageW(ms_per_tick, WM_SETTEXT, 0, (LPARAM)(L"30"));
+				SendMessageW(tick_per_ms, WM_SETTEXT, 0, (LPARAM)(L"30"));
 				SendMessageW(frame_start, WM_SETTEXT, 0, (LPARAM)(L"0"));
 				SendMessageW(frame_end, WM_SETTEXT, 0, (LPARAM)(L"-1"));
 			},
@@ -103,20 +104,25 @@ void LEngine::Command(WPARAM wParam)
 				_f_engine->Set_AnimFolder(relative_path);
 				SendMessageW(vmd_folder_path, WM_SETTEXT, 0, (LPARAM)(path_part.c_str()));
 				SendMessageW(vmd_file_path, WM_SETTEXT, 0, (LPARAM)(L""));
-				SendMessageW(ms_per_tick, WM_SETTEXT, 0, (LPARAM)(L"30"));
+				SendMessageW(tick_per_ms, WM_SETTEXT, 0, (LPARAM)(L"30"));
 				SendMessageW(frame_start, WM_SETTEXT, 0, (LPARAM)(L"0"));
 				SendMessageW(frame_end, WM_SETTEXT, 0, (LPARAM)(L"-1"));
 			},
 			L"Folder", (FileSystem::GetWorkingDirectoryW() + L"../").c_str(), hWnd);
 		break;
 	case 3:
-		_converter->Set_Ms_per_Tick(GetDlgItemInt(hWnd, GetDlgCtrlID(ms_per_tick), nullptr, true));
+	{
+		TCHAR buff[1024];
+		GetWindowTextW(tick_per_ms, buff, 1024);
+		auto f = wcstod(buff, nullptr);
+		_converter->Set_Ms_per_Tick(1000.f/f);
 		_converter->Set_StartFrame(GetDlgItemInt(hWnd, GetDlgCtrlID(frame_start), nullptr, true));
 		_converter->Set_EndFrame(GetDlgItemInt(hWnd, GetDlgCtrlID(frame_end), nullptr, true));
 		_converter->Set_Is_For_Binary(false);
 		_f_engine->Set_Run(true);
 		_is_exporting = true;
 		break;
+	}
 	case 4:
 		_converter->Set_StartFrame(GetDlgItemInt(hWnd, GetDlgCtrlID(frame_start), nullptr, true));
 		_converter->Set_EndFrame(GetDlgItemInt(hWnd, GetDlgCtrlID(frame_end), nullptr, true));
@@ -126,7 +132,7 @@ void LEngine::Command(WPARAM wParam)
 		break;
 	case 21:
 		if (_f_engine->Is_Run())
-			SendMessageW(ms_per_tick, WM_SETTEXT, 0, (LPARAM)(L"30"));
+			SendMessageW(tick_per_ms, WM_SETTEXT, 0, (LPARAM)(L"30"));
 		break;
 	case 22:
 		if (_f_engine->Is_Run())
@@ -135,6 +141,17 @@ void LEngine::Command(WPARAM wParam)
 	case 23:
 		if (_f_engine->Is_Run())
 			SendMessageW(frame_end, WM_SETTEXT, 0, (LPARAM)(L"-1"));
+		break;
+	case 24:
+		if (_converter->Use_Physics())
+		{
+			_converter->Set_Use_Physics(false);
+			SendMessageW(use_physics, BM_SETCHECK, BST_UNCHECKED, 0);
+		}
+		else {
+			_converter->Set_Use_Physics(true);
+			SendMessageW(use_physics, BM_SETCHECK, BST_CHECKED, 0);
+		}
 		break;
 	}
 	InvalidateRect(hWnd, nullptr, false);

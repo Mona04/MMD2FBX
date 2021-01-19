@@ -38,7 +38,8 @@ namespace Framework
 			std::is_same<T, Quaternion>::value ||
 			std::is_same<T, Color4>::value ||
 			std::is_same<T, Matrix>::value ||
-			std::is_same<T, uint8_t>::value
+			std::is_same<T, uint8_t>::value ||
+			std::is_same<T, UInt8Vector2>::value
 		>::type> void Write(const T& value)
 		{
 			out.write(reinterpret_cast<const char*>(&value), sizeof(T));
@@ -77,7 +78,8 @@ namespace Framework
 			std::is_same<T, Quaternion>::value ||
 			std::is_same<T, Color4>::value ||
 			std::is_same<T, Matrix>::value ||
-			std::is_same<T, uint8_t>::value
+			std::is_same<T, uint8_t>::value ||
+			std::is_same<T, UInt8Vector2>::value
 		>::type> void Read(T& value)
 		{
 			in.read(reinterpret_cast<char*>(&value), sizeof(T));

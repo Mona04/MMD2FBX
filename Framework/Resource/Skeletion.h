@@ -9,7 +9,7 @@ namespace Framework
 	struct IKLink
 	{
 		IKLink() : ikBoneIndex(-1), enableAxisLimit(0), limitMin(0), limitMax(0) {}
-		void SaveToFile(FileStream& stream);
+		void SaveToFile(FileStream& stream) const;
 		void LoadFromFile(FileStream& stream);
 
 		int			ikBoneIndex;
@@ -49,7 +49,7 @@ namespace Framework
 		Bone& AddChild() { return childs.emplace_back(Bone()); }
 		Bone& AddChild(const Bone& bone) { return childs.emplace_back(bone); }
 		IKLink& AddIKLink() { return ikLinks.emplace_back(IKLink()); }
-		void SaveToFile(FileStream& stream);
+		void SaveToFile(FileStream& stream) const;
 		void LoadFromFile(FileStream& stream);
 
 		std::wstring name;
@@ -81,7 +81,7 @@ namespace Framework
 		Skeleton& operator=(Skeleton&& rhs) = delete;
 
 		virtual bool LoadFromFile(std::wstring_view path) override;
-		virtual bool SaveToFile(std::wstring_view path) override;
+		virtual bool SaveToFile(std::wstring_view path) const override;
 		virtual void Clear() override;
 
 	public:

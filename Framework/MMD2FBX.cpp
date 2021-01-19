@@ -2,9 +2,9 @@
 #include "MMD2FBX.h"
 
 #include "Scene/Actor.h"
-#include "Scene/Component/Renderable.h"
 #include "Scene/Component/Transform.h"
 #include "Scene/Component/Animator.h"
+#include "Scene/Component/Renderable.h"
 #include "Resource/Mesh.h"
 #include "Resource/Material.h"
 #include "Resource/Animation.h"
@@ -86,8 +86,8 @@ bool MMD2FBX::Record_Animation_Frame(int cur_tik)
 		if (bone)
 		{
 			auto pos = bone->GetCalcLocalPos();   // fbx는 world 위치를 저장함
-			auto rot_q = bone->GetCalcLocalRot();
-			auto rot = FbxQuaternion(rot_q.x, rot_q.y, rot_q.z, rot_q.w).DecomposeSphericalXYZ();
+			auto rot_m = bone->GetCalcLocalRot();
+			auto rot = FbxQuaternion(rot_m.x, rot_m.y, rot_m.z, rot_m.w).DecomposeSphericalXYZ();
 
 			_channels_data[i]._posKeys.emplace_back(std::pair(cur_tik, FbxVector4(pos.x, pos.y, pos.z)));
 			_channels_data[i]._sclKeys.emplace_back(std::pair(cur_tik, FbxVector4(1, 1, 1)));
@@ -535,8 +535,8 @@ void MMD2FBX::SaveAnimation(FbxScene* pScene, FbxNode* node_bone_root)
 	std::vector<const char*> curve_channels 
 		= { FBXSDK_CURVENODE_COMPONENT_X, FBXSDK_CURVENODE_COMPONENT_Y, FBXSDK_CURVENODE_COMPONENT_Z };
 
-	// Create the AnimCurve on the Rotation.Z channel
-	for (int type = 0; type < 3; type++)
+	// Create the AnimCurve on tras, rot
+	for (int type = 0; type < 2; type++)
 	{
 		for (int bone_index = 0; bone_index < boneNode_array.size(); bone_index++)
 		{
@@ -558,21 +558,8 @@ void MMD2FBX::SaveAnimation(FbxScene* pScene, FbxNode* node_bone_root)
 						lCurve->KeySetInterpolation(lKeyIndex, FbxAnimCurveDef::eInterpolationCubic);
 					}
 					lCurve->KeyModifyEnd();
-					break;
-				case 1: 
-					lCurve = boneNode_array[bone_index]->LclScaling.GetCurve(lAnimLayer, curve_channels[channel_index], true);
-					lCurve->KeyClear();
-					lCurve->KeyModifyBegin();
-					for (const auto& frame : channel_data._sclKeys)
-					{
-						lTime.SetMilliSeconds(frame.first * _ms_per_tick);
-						lKeyIndex = lCurve->KeyAdd(lTime);
-						lCurve->KeySetValue(lKeyIndex, frame.second.mData[channel_index]);
-						lCurve->KeySetInterpolation(lKeyIndex, FbxAnimCurveDef::eInterpolationCubic);
-					}
-					lCurve->KeyModifyEnd();
 					break;					
-				case 2:
+				case 1:
 					lCurve = boneNode_array[bone_index]->LclRotation.GetCurve(lAnimLayer, curve_channels[channel_index], true);
 					lCurve->KeyClear();
 					lCurve->KeyModifyBegin();

@@ -3,7 +3,7 @@
 
 using namespace Framework;
 
-void IKLink::SaveToFile(FileStream& stream)
+void IKLink::SaveToFile(FileStream& stream) const
 {
 	stream.Write(ikBoneIndex);
 	stream.Write(enableAxisLimit);
@@ -20,7 +20,7 @@ void IKLink::LoadFromFile(FileStream& stream)
 }
 
 
-void Bone::SaveToFile(FileStream& stream)
+void Bone::SaveToFile(FileStream& stream) const
 {
 	stream.Write(name);
 
@@ -111,7 +111,7 @@ bool Skeleton::LoadFromFile(std::wstring_view path)
 	return true;
 }
 
-bool Skeleton::SaveToFile(std::wstring_view path)
+bool Skeleton::SaveToFile(std::wstring_view path) const
 {
 	FileStream stream;
 	stream.Open(std::wstring(path), StreamMode::Write);

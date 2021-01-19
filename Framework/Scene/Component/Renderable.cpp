@@ -4,13 +4,14 @@
 #include "Resource/Mesh.h"
 #include "Resource/SkeletalMesh.h"
 #include "Resource/Material.h"
-#include "Resource/Morph.h"
+#include "Resource/Morphs.h"
 #include "Core/Subsystem/Resource/ResourceManager.h"
 
 #include "Util/FileSystem.h"
 
 #include "Core/DirectX/0_IADesc/Input_Desc.h"
 
+#include <future>
 
 using namespace Framework;
 
@@ -44,7 +45,6 @@ void Renderable::Clear()
 	_materials.clear();
 	_materials.shrink_to_fit();
 	_morphs.clear();
-
 }
 
 void Renderable::SetMeshes(std::vector<std::wstring_view>& paths)
@@ -125,73 +125,25 @@ void Renderable::DeleteMaterial(uint i)
 	}
 }
 
-void Renderable::SetMorphs(std::vector<std::wstring_view>& paths)
+void Renderable::SetMorphs(std::wstring_view path)
 {
 	_morphs.clear();
 
-	for (const auto& path : paths)
-		AddMorph(path);
-}
-
-void Renderable::AddMorph(std::wstring_view path)
-{
-	auto new_morph = _resourceManager->GetResource<Morph>(path);
-	if (new_morph)
-		_morphs[new_morph->Get_MorphName()] = Morph_Package(0.f, new_morph);
-	else
-		LOG_WARNING("Invalid new Morph. Check Path or File.");
-}
-
-void Renderable::DeleteMorph(uint i)
-{
-	auto iter = _morphs.begin();
-	for (int ii = 0; ii < _morphs.size(); ii++, iter++)
+	auto morphs = _resourceManager->GetResource<Morphs>(path);
+	for (const auto& morph : morphs->GetMorphs())
 	{
-		if (ii = i)
-		{
-			_morphs.erase(iter);
-			break;
-		}
+		if (morph != nullptr)
+			_morphs[morph->Get_MorphName()] = Morph_Package(0.f, morph.get());
 	}
 }
 
-
-// ============ Hard Code Renderable ================================
-
-void Renderable::SetRenderMesh()
+void Renderable::DeleteMorphs()
 {
-	// RenderTarget 용 직사각형 만들려고
-	_meshes.clear();
-	_meshes.shrink_to_fit();
-	AddMesh();
-
-	_meshes[0]->MakeScreenMesh();
+	_morphs.clear();
 }
 
-void Renderable::SetCube()
+void Renderable::SetMorphWeight(float weight, const std::wstring& name)
 {
-	// RenderTarget 용 직사각형 만들려고
-	_meshes.clear();
-	_meshes.shrink_to_fit();
-	AddMesh();
-
-	_meshes[0]->MakeCube();
-}
-
-void Renderable::SetGizmo()
-{
-	_meshes.clear();
-	_meshes.shrink_to_fit();
-	AddMesh();
-
-	_meshes[0]->MakeGizmo();
-}
-
-void Renderable::SetGrid()
-{
-	_meshes.clear();
-	_meshes.shrink_to_fit();
-	AddMesh();
-
-	_meshes[0]->MakeGrid();
+	if (_morphs.find(name) != _morphs.end())
+		_morphs[name].weight = weight;
 }

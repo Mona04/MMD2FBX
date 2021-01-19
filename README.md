@@ -16,3 +16,11 @@ You must include FBXSDK headers with Processor Definition "FBXSDK_SHARED".
 ## Environment
 
 "MMD2FBX" use winapi but all the functions for the purpose is implemented in "Framework" project. 
+
+## Note
+fbx use euler angles so animation using a value upper 180 degree makes fbx animation awkward in applications like 3D View.
+
+If you convert the euler angles to quaternion, the strange animation will be fixed.
+
+
+

@@ -8,16 +8,12 @@
 
 #include "Framework/Core/Subsystem/Resource/ResourceManager.h"
 
-#include "framework/Resource/Mesh.h"
 #include "Framework/Resource/SkeletalMesh.h"
 #include "framework/Resource/Skeletion.h"
-#include "Framework/Resource/Material.h"
-#include "Framework/Resource/Animation.h"
-#include "Framework/Resource/Morph.h"
+#include "Framework/Resource/Morphs.h"
+
 #include "Framework/Scene/Actor.h"
-#include "Framework/Scene/Component/Renderable.h"
 #include "Framework/Scene/Component/Transform.h"
-#include "Framework/Scene/Component/Animator.h"
 
 using namespace Framework;
 using namespace pmx;
@@ -27,7 +23,6 @@ bool MMD_Importer::LoadTransform(Transform* transform)
 	auto mgr = _context->GetSubsystem<ResourceManager>();
 
 	auto skeleton = std::make_shared<Skeleton>(_context);
-
 	std::vector<std::pair<int, int>> bone_links_data;
 
 	LoadSkeleton(skeleton, bone_links_data);
@@ -35,6 +30,7 @@ bool MMD_Importer::LoadTransform(Transform* transform)
 	LoadSkeleton_Resursive(skeleton, bone_links_data);
 	mgr->RegisterResource<Skeleton>(skeleton, _basePathName + Extension_SkeletonW);
 	transform->Set_Skeleton(skeleton->GetPath(), true);
+
 
 	return true;
 }
@@ -60,8 +56,8 @@ bool MMD_Importer::LoadSkeleton(std::shared_ptr<Skeleton> skeleton, std::vector<
 		auto& bone = skeleton->AddBone(i, Matrix::identity, bone_name);
 
 		_stream->read((char*)&pos, sizeof(float) * 3);
-		PreProcessing_MMD_Vector3(pos, true);
-		bone.offset = Matrix::PositionToMatrix(pos).Inverse_SRT();	// offset 은 T 기준이라서 얘가 맞음
+		PreProcess_MMD_Vector3(pos, true);
+		bone.offset = Matrix::PositionToMatrix(pos).Inverse_RT();	// offset 은 T 기준이라서 얘가 맞음
 		bone.parent_index = ReadIndex(_stream, _setting.bone_index_size);
 
 
@@ -71,27 +67,27 @@ bool MMD_Importer::LoadSkeleton(std::shared_ptr<Skeleton> skeleton, std::vector<
 		int ik_target_bone_index = 0;
 		int ik_loop = 0;
 		float ik_loop_angle_limit = 0;
-
+		
 		Vector3 lock_axis_orientation;
 		Vector3 local_x_orientation;
-		Vector3 local_y_orientation;
+		Vector3 local_y_orientation;	
 
 		_stream->read((char*)&level, sizeof(int));
 		_stream->read((char*)&bone_flag, sizeof(uint16_t));
-
+		
 		if (bone_flag & PMXBoneFlags::TargetShowMode) {   // 해결
 			target_index = ReadIndex(_stream, _setting.bone_index_size);
 		}
 		else {   // 잘 모르겠음
 			_stream->read((char*)&offset, sizeof(float) * 3);
-			PreProcessing_MMD_Vector3(offset);
+			PreProcess_MMD_Vector3(offset);
 		}
 
-		if (bone_flag & (PMXBoneFlags::AppendRotate | PMXBoneFlags::AppendTranslate)) {
+		if (bone_flag & (PMXBoneFlags::AppendRotate | PMXBoneFlags::AppendTranslate)) { 
 			bone.append_index = ReadIndex(_stream, _setting.bone_index_size);
 			_stream->read((char*)&bone.append_weight, sizeof(float));
 		}
-
+		
 		if (bone_flag & PMXBoneFlags::FixedAxis) { // 허리 같은 거나 해당되고 값이 없음. 안쓰이는 듯.
 			_stream->read((char*)&lock_axis_orientation, sizeof(float) * 3);
 		}
@@ -113,10 +109,10 @@ bool MMD_Importer::LoadSkeleton(std::shared_ptr<Skeleton> skeleton, std::vector<
 			for (int i = 0; i < ik_link_count; i++) {
 				auto& iklink = bone.AddIKLink();
 				iklink.ikBoneIndex = ReadIndex(_stream, _setting.bone_index_size);
-
+				
 				_stream->read((char*)&iklink.enableAxisLimit, sizeof(uint8_t));
 				if (iklink.enableAxisLimit == 1)
-				{
+				{					
 					_stream->read((char*)&iklink.limitMin, sizeof(float) * 3);
 					_stream->read((char*)&iklink.limitMax, sizeof(float) * 3);
 				}
@@ -133,131 +129,18 @@ bool MMD_Importer::LoadSkeleton_Resursive(std::shared_ptr<class Skeleton> skelet
 {
 	auto& root = skeleton->GetRoot();
 	root = skeleton->GetBone(0);
-	root.local = root.offset.Inverse_SRT();
+	root.local = root.offset.Inverse_RT();
 
 	std::sort(bone_links_data.begin(), bone_links_data.end(),
 		[](std::pair<int, int> lhs, std::pair<int, int> rhs) {return lhs.first < rhs.first; });
 
-	for (int i = 1; i < bone_links_data.size(); i++)
+	for (int i = 1; i < bone_links_data.size() ; i++)
 	{
 		Bone& parent = skeleton->GetBoneInTree(bone_links_data[i].first, root);
 		Bone& current = skeleton->GetBone(bone_links_data[i].second);
-		current.local = current.offset.Inverse_SRT() * parent.offset;
-		parent.AddChild(current);
+		current.local = current.offset.Inverse_RT() * parent.offset;
+		parent.AddChild(current);	
 	}
 
 	return true;
-}
-
-
-
-bool MMD_Importer::LoadPhysics()
-{
-	int frame_count = 0;
-	_stream->read((char*)&frame_count, sizeof(int));
-	for (int i = 0; i < frame_count; i++)
-	{
-		uint8_t frame_flag;
-		int element_count;
-		std::unique_ptr<PmxFrameElement[]> elements;
-
-		std::wstring frame_name = ReadString(_stream, _setting.encoding);
-		std::wstring frame_english_name = ReadString(_stream, _setting.encoding);
-		_stream->read((char*)&frame_flag, sizeof(uint8_t));
-		_stream->read((char*)&element_count, sizeof(int));
-
-		elements = std::make_unique<PmxFrameElement[]>(element_count);
-		for (int i = 0; i < element_count; i++)
-		{
-			uint8_t element_target;
-			int index;
-			_stream->read((char*)&element_target, sizeof(uint8_t));
-			if (element_target == 0x00)
-			{
-				index = ReadIndex(_stream, _setting.bone_index_size);
-			}
-			else {
-				index = ReadIndex(_stream, _setting.morph_index_size);
-			}
-		}
-	}
-
-	int rigid_body_count = 0;
-	_stream->read((char*)&rigid_body_count, sizeof(int));
-	for (int i = 0; i < rigid_body_count; i++)
-	{
-		std::wstring rigid_body_name = ReadString(_stream, _setting.encoding);
-		std::wstring rigid_body_english_name = ReadString(_stream, _setting.encoding);
-		int target_bone;
-		uint8_t group;
-		uint16_t mask;
-		uint8_t shape;
-		float size[3];
-		float position[3];
-		float orientation[3];
-		float mass;
-		float move_attenuation;
-		float rotation_attenuation;
-		float repulsion;
-		float friction;
-		uint8_t physics_calc_type;
-		target_bone = ReadIndex(_stream, _setting.bone_index_size);
-		_stream->read((char*)&group, sizeof(uint8_t));
-		_stream->read((char*)&mask, sizeof(uint16_t));
-		_stream->read((char*)&shape, sizeof(uint8_t));
-		_stream->read((char*)size, sizeof(float) * 3);
-		_stream->read((char*)position, sizeof(float) * 3);
-		_stream->read((char*)orientation, sizeof(float) * 3);
-		_stream->read((char*)&mass, sizeof(float));
-		_stream->read((char*)&move_attenuation, sizeof(float));
-		_stream->read((char*)&rotation_attenuation, sizeof(float));
-		_stream->read((char*)&repulsion, sizeof(float));
-		_stream->read((char*)&friction, sizeof(float));
-		_stream->read((char*)&physics_calc_type, sizeof(uint8_t));
-	}
-
-	int joint_count = 0;
-	_stream->read((char*)&joint_count, sizeof(int));
-	for (int i = 0; i < joint_count; i++)
-	{
-		std::wstring joint_name = ReadString(_stream, _setting.encoding);
-		std::wstring joint_english_name = ReadString(_stream, _setting.encoding);
-		PmxJointType joint_type;
-		PmxJointParam param;
-		_stream->read((char*)&joint_type, sizeof(uint8_t));
-
-		int rigid_body1;
-		int rigid_body2;
-		float position[3];
-		float orientaiton[3];
-		float move_limitation_min[3];
-		float move_limitation_max[3];
-		float rotation_limitation_min[3];
-		float rotation_limitation_max[3];
-		float spring_move_coefficient[3];
-		float spring_rotation_coefficient[3];
-
-		rigid_body1 = ReadIndex(_stream, _setting.rigidbody_index_size);
-		rigid_body2 = ReadIndex(_stream, _setting.rigidbody_index_size);
-		_stream->read((char*)position, sizeof(float) * 3);
-		_stream->read((char*)orientaiton, sizeof(float) * 3);
-		_stream->read((char*)move_limitation_min, sizeof(float) * 3);
-		_stream->read((char*)move_limitation_max, sizeof(float) * 3);
-		_stream->read((char*)rotation_limitation_min, sizeof(float) * 3);
-		_stream->read((char*)rotation_limitation_max, sizeof(float) * 3);
-		_stream->read((char*)spring_move_coefficient, sizeof(float) * 3);
-		_stream->read((char*)spring_rotation_coefficient, sizeof(float) * 3);
-	}
-
-	// soft body
-	if (_version == 2.1f)
-	{
-		int soft_body_count = 0;
-		_stream->read((char*)&soft_body_count, sizeof(int));;
-		//for (int i = 0; i < soft_body_count; i++)
-		//{
-		//	this->soft_bodies[i].Read(stream, &setting);
-		//}
-	}
-	return false;
 }

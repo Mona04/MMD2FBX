@@ -4,10 +4,10 @@
 
 #include "../Chimera_Object.h"
 
-#include "Core/Subsystem/Context.h"
-#include "Core/Subsystem/Resource/ResourceManager.h"
+#include "Framework/Core/Subsystem/Context.h"
+#include "Framework/Core/Subsystem/Resource/ResourceManager.h"
 
-#include "Math/Math.h"
+#include "Framework/Math/Math.h"
 
 namespace Framework
 {
@@ -15,8 +15,8 @@ namespace Framework
 	{
 	public:
 		enum class TypeCode : unsigned int {
-			None, Camera, Transform, Renderable, Animator, IKSolver,
-			Collider, Light, Scripter,
+			None, Setting, Camera, Transform, Renderable, Animator, IKSolver,
+			Collider, Light, Scripter, RigidBodys
 		};
 		template<typename T> static constexpr TypeCode DeduceType();
 
@@ -27,6 +27,7 @@ namespace Framework
 		virtual bool Update() = 0;
 		virtual void Clear() = 0;
 
+		class Context* GetContext() { return _context; }
 		const TypeCode GetType() const { return typecode; }
 		// Actor 의 AddComponent 에서 처리하니 걱정말라굿
 		void SetActor(class Actor* actor) { _actor = actor; }
@@ -34,6 +35,7 @@ namespace Framework
 			switch (typecode)
 			{
 			case TypeCode::None: return "None";
+			case TypeCode::Setting: return "Setting";
 			case TypeCode::Transform: return "Transform";
 			case TypeCode::Renderable: return "Renderable";
 			case TypeCode::Light: return "Light";
@@ -42,6 +44,7 @@ namespace Framework
 			case TypeCode::Animator: return "Animator";
 			case TypeCode::Collider: return "Collider";
 			case TypeCode::IKSolver: return "IKSolver";
+			case TypeCode::RigidBodys: return "RigidBodys";
 			default:
 				return "None";
 			}
@@ -56,14 +59,16 @@ namespace Framework
 
 	template<typename T>
 	inline constexpr IComponent::TypeCode IComponent::DeduceType() { return TypeCode::None; }
-	
-	#define RegisterComponent(T, Code) template<> inline constexpr IComponent::TypeCode IComponent::DeduceType<T>() { return Code; }
-	RegisterComponent(class Transform, TypeCode::Transform)
-	RegisterComponent(class Renderable, TypeCode::Renderable)
-	RegisterComponent(class Light, TypeCode::Light)
-	RegisterComponent(class Scripter, TypeCode::Scripter)
-	RegisterComponent(class Camera, TypeCode::Camera)
-	RegisterComponent(class Animator, TypeCode::Animator)
-	RegisterComponent(class Collider, TypeCode::Collider)
-	RegisterComponent(class IKSolver, TypeCode::IKSolver)
+
+#define RegisterComponent(T, Code) template<> inline constexpr IComponent::TypeCode IComponent::DeduceType<T>() { return Code; }
+	RegisterComponent(class Setting_Actor, TypeCode::Setting)
+		RegisterComponent(class Transform, TypeCode::Transform)
+		RegisterComponent(class Renderable, TypeCode::Renderable)
+		RegisterComponent(class Light, TypeCode::Light)
+		RegisterComponent(class Scripter, TypeCode::Scripter)
+		RegisterComponent(class Camera, TypeCode::Camera)
+		RegisterComponent(class Animator, TypeCode::Animator)
+		RegisterComponent(class Collider, TypeCode::Collider)
+		RegisterComponent(class IKSolver, TypeCode::IKSolver)
+		RegisterComponent(class RigidBodys, TypeCode::RigidBodys)
 }

@@ -16,12 +16,12 @@ const Matrix Matrix::HomogeneousToCartesian(const Matrix& matrix)
 	);
 }
 
-const Matrix Matrix::PositionToMatrix(const Vector3& pos)
+Matrix const Matrix::PositionToMatrix(const Vector3& pos)
 {
 	return Matrix(1, 0, 0, pos.x, 0, 1, 0, pos.y, 0, 0, 1, pos.z, 0, 0, 0, 1);
 }
 
-const Matrix Matrix::ScaleToMatrix(const Vector3& scale)
+Matrix const Matrix::ScaleToMatrix(const Vector3& scale)
 {
 	return Matrix(scale.x, 0, 0, 0, 0, scale.y, 0, 0, 0, 0, scale.z, 0, 0, 0, 0, 1);
 }
@@ -41,10 +41,10 @@ Matrix const Matrix::QuaternionToMatrix(const Quaternion& rotation)
 
 	return Matrix
 	(
-		x2 - y2 - z2 + w2,  2.0f * (xy - zw),    2.0f * (xz + yw),    0.0f,  
-		2.0f * (zw + xy),   -x2 + y2 - z2 + w2,  2.0f * (yz - xw),    0.0f,
-		2.0f * (xz - yw),   2.0f * (xw + yz),    -x2 - y2 + z2 + w2,  0.0f,
-		0.0f,     		    0.0f,       		 0.0f,                1.0f
+		x2 - y2 - z2 + w2, 2.0f * (xy - zw), 2.0f * (xz + yw), 0.0f,
+		2.0f * (zw + xy), -x2 + y2 - z2 + w2, 2.0f * (yz - xw), 0.0f,
+		2.0f * (xz - yw), 2.0f * (xw + yz), -x2 - y2 + z2 + w2, 0.0f,
+		0.0f, 0.0f, 0.0f, 1.0f
 	);
 }
 
@@ -61,9 +61,9 @@ const Vector3 Matrix::MatrixToScale(const Matrix& matrix)
 
 	return Vector3
 	(
-		sqrtf(powf(matrix._11, 2) + powf(matrix._12, 2) + powf(matrix._13, 2)),
-		sqrtf(powf(matrix._21, 2) + powf(matrix._22, 2) + powf(matrix._23, 2)),
-		sqrtf(powf(matrix._31, 2) + powf(matrix._32, 2) + powf(matrix._33, 2))
+		sqrtf(powf(matrix._11, 2) + powf(matrix._21, 2) + powf(matrix._31, 2)),
+		sqrtf(powf(matrix._12, 2) + powf(matrix._22, 2) + powf(matrix._32, 2)),
+		sqrtf(powf(matrix._13, 2) + powf(matrix._23, 2) + powf(matrix._33, 2))
 	);
 }
 
@@ -162,19 +162,44 @@ Matrix Matrix::Transpose() const
 	return tmp;
 }
 
-Matrix Matrix::Inverse_SRT() const
+Matrix Matrix::Inverse_RT() const
 {
-	Matrix SR = Matrix::HomogeneousToCartesian(*this).Transpose();	
+	Matrix R = Matrix::HomogeneousToCartesian(*this).Transpose();
 	Matrix T = Matrix::identity;
 	T._14 = -this->_14;
 	T._24 = -this->_24;
 	T._34 = -this->_34;
-	return SR * T;
+	return R * T;
 }
+
+Matrix Matrix::Inverse_SRT() const
+{
+	Vector3 s = Matrix::MatrixToScale(*this);
+	s = s * s;
+	Matrix R = Matrix::HomogeneousToCartesian(*this).Transpose();
+	R._11 /= s.x; R._12 /= s.x; R._13 /= s.x;
+	R._21 /= s.y; R._22 /= s.y; R._23 /= s.y;
+	R._31 /= s.z; R._32 /= s.z; R._33 /= s.z;
+	Matrix T = Matrix::identity;
+	T._14 = -this->_14;
+	T._24 = -this->_24;
+	T._34 = -this->_34;
+	return R * T;
+}
+
 //void Matrix::operator=(const Matrix& rhs)
 //{
 //	memcpy(this, &rhs, sizeof(Matrix));
 //}
+
+bool Matrix::operator==(const Matrix& rhs) const
+{
+	return
+		_11 == rhs._11 && _12 == rhs._12 && _13 == rhs._13 && _14 == rhs._14 &&
+		_21 == rhs._21 && _22 == rhs._22 && _23 == rhs._23 && _24 == rhs._24 &&
+		_31 == rhs._31 && _32 == rhs._32 && _33 == rhs._33 && _34 == rhs._34 &&
+		_41 == rhs._41 && _42 == rhs._42 && _43 == rhs._43 && _44 == rhs._44;
+}
 
 Matrix Matrix::operator*(float rhs) const
 {
@@ -186,7 +211,7 @@ Matrix Matrix::operator*(float rhs) const
 
 Matrix& Matrix::operator*=(float rhs)
 {
-	_11 *= rhs; _22 *= rhs; _33 *= rhs; 
+	_11 *= rhs; _22 *= rhs; _33 *= rhs;
 
 	return *this;
 }
@@ -217,10 +242,10 @@ const Matrix Matrix::operator*(const Matrix& rhs) const
 const Vector3 Matrix::operator*(const Vector3& rhs) const
 {
 	return Vector3(
-		_11 *rhs.x + _12 * rhs.y + _13 * rhs.z + _14 * 1, 
+		_11 * rhs.x + _12 * rhs.y + _13 * rhs.z + _14 * 1,
 		_21 * rhs.x + _22 * rhs.y + _23 * rhs.z + _24 * 1,
 		_31 * rhs.x + _32 * rhs.y + _33 * rhs.z + _34 * 1
-		);
+	);
 }
 
 const Vector4 Matrix::operator*(const Vector4& rhs) const
@@ -251,18 +276,18 @@ void Matrix::PerspectiveFovLH(float fovAngleY, float aspectRatio, float zNear, f
 	float w = h / aspectRatio;   // 그리고 후면제거 단계 혹은 그 이전인 ps 이런데에서 w 에 저장되어 있는 z 값을 나누면   -1 ~ +1 로 처리가 됨.
 	SetIdentity();
 
-	_11 = w; 
-			_22 = h; 
-		     	     _33 = zFar / (zFar - zNear); _34 = -zNear * zFar / (zFar - zNear);
-					 _43 = 1; _44 = 0;
+	_11 = w;
+	_22 = h;
+	_33 = zFar / (zFar - zNear); _34 = -zNear * zFar / (zFar - zNear);
+	_43 = 1; _44 = 0;
 }
 
 void Matrix::OrthographicLH(float w, float h, float zNear, float zFar)
 {
 	SetIdentity();
 
-	_11 = 2/w; 
-			_22 = 2/h; 
-		     	     _33 = 1 / (zFar - zNear); _34 = zNear / (zNear - zFar);
-											   _44 = 1;
+	_11 = 2 / w;
+	_22 = 2 / h;
+	_33 = 1 / (zFar - zNear); _34 = zNear / (zNear - zFar);
+	_44 = 1;
 }

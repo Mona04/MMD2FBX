@@ -27,8 +27,6 @@ namespace Framework
 		class Actor* FindActor(unsigned int code);
 		void DeleteActor(unsigned int code);
 
-		class Camera* GetCamera();
-
 		std::vector<class Actor*>& GetActors() { return _actors; }
 
 	protected:

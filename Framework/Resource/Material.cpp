@@ -37,7 +37,7 @@ bool Material::LoadFromFile(std::wstring_view path)
 
 		stream.Read(nTexture);
 
-		for (int i = 0; i < nTexture; i++)
+		for (int i = 0 ; i < nTexture; i++)
 		{
 			stream.Read(type_texture);
 			stream.Read(texture_path);
@@ -52,17 +52,20 @@ bool Material::LoadFromFile(std::wstring_view path)
 	}
 	stream.Close();
 
+
+	CreateBuffer();
+
 	return true;
 }
 
-bool Material::SaveToFile(std::wstring_view path)
+bool Material::SaveToFile(std::wstring_view path) const
 {
 	FileStream stream;
 	stream.Open(std::wstring(path), StreamMode::Write);
 	{
 		stream.Write(_material_name);
 		stream.Write(_material_english_name);
-
+		
 		uint nTexture = _textures.size();
 		stream.Write(nTexture);
 
@@ -73,7 +76,8 @@ bool Material::SaveToFile(std::wstring_view path)
 			stream.Write(static_cast<uint>(type));
 			if (texture)
 				stream.Write(texture->GetPath());
-			else stream.Write(L"");
+			else
+				stream.Write(None_StringW);
 		}
 
 		_material_common.SaveToFile(stream);
@@ -90,6 +94,14 @@ void Material::Clear()
 {
 }
 
+void Material::Update_Buffers()
+{
+}
+
+bool Material::CreateBuffer()
+{
+	return true;
+}
 
 void Material::Set_Texture(std::wstring_view path, Type_Texture type)
 {
@@ -123,18 +135,18 @@ std::shared_ptr<class Texture> Material::Get_Texture(Type_Texture type)
 void Material_MMD::Clear()
 {
 	_draw_mode = PMXDrawMode::VertexColor;
-	_sphere_op_mode = PMXSphereMode::Add;
-	_toon_mode = PMXToonMode::Common;
+	_sphere_op_mode = PMXSphereMode::Add; 
+	_toon_mode = PMXToonMode::Common; 
 
 	_texture_add_factor = { 0, 0, 0, 0 };
 	_texture_mul_factor = { 1, 1, 1, 1 };
 	_sphere_add_factor = { 0, 0, 0, 0 };
 	_sphere_mul_factor = { 1, 1, 1, 1 };
-	_toon_add_factor = { 0, 0, 0, 0 };
+	_toon_add_factor = { 0, 0, 0, 0};
 	_toon_mul_factor = { 1, 1, 1, 1 };
 }
 
-void Material_MMD::SaveToFile(FileStream& stream)
+void Material_MMD::SaveToFile(FileStream& stream) const
 {
 	stream.Write(static_cast<uint8_t>(_draw_mode));
 	stream.Write(static_cast<uint8_t>(_sphere_op_mode));
@@ -151,7 +163,7 @@ void Material_MMD::SaveToFile(FileStream& stream)
 void Material_MMD::LoadFromFile(FileStream& stream)
 {
 	uint8_t flag;
-
+	
 	stream.Read(flag); _draw_mode = static_cast<PMXDrawMode>(flag);
 	stream.Read(flag); _sphere_op_mode = static_cast<PMXSphereMode>(flag);
 	stream.Read(flag); _toon_mode = static_cast<PMXToonMode>(flag);
@@ -170,12 +182,12 @@ void Material_Common::Clear()
 	_specular = { 1,1,1 };  // ±¤ÅÃ»ö
 	_specularlity = 1;  // ±¤ÅÃµµ
 	_ambient = { 1,1,1 };   // È¯°æ»ö
-
+	
 	_edge_color = { 1,1,1,1 };
 	_edge_size = 1;
 }
 
-void Material_Common::SaveToFile(FileStream& stream)
+void Material_Common::SaveToFile(FileStream& stream) const
 {
 	stream.Write(_diffuse);
 	stream.Write(_specular);

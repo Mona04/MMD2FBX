@@ -1,12 +1,12 @@
 #include "Framework.h"
 #include "Engine.h"
 
-
 #include "Util/EventSystem.h"
 
 #include "Subsystem/Function/Thread.h"
 #include "Subsystem/Function/Timer.h"
 #include "Subsystem/Resource/ResourceManager.h"
+#include "Subsystem/Physics/PhysicsManager.h"
 #include "Subsystem/Scene/SceneManager.h"
 #include "Subsystem/Scene/MMD2FBX_Converter.h"
 
@@ -29,6 +29,7 @@ void Engine::Init(unsigned int screenWidth, unsigned int screenHeight, bool vsyn
 
 	_context->AddSubsystem<Thread>();
 	_context->AddSubsystem<ResourceManager>();// as least initialized already before sceneManager
+	_context->AddSubsystem<PhysicsManager>();
 	_context->AddSubsystem<SceneManager>();  // last one
 
 	_converter = _context->AddSubsystem<MMD2FBX_Converter>(); // scene update 후에 해야지 동작 적용됨

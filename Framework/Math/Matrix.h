@@ -32,9 +32,11 @@ public:
 public:
 	void SetIdentity();
 	Matrix Transpose() const;
+	Matrix Inverse_RT() const;
 	Matrix Inverse_SRT() const;
 
 public:
+	bool operator==(const Matrix& rhs) const;
 	Matrix operator*(float rhs) const;
 	Matrix& operator*=(float rhs);
 	const Matrix operator*(const Matrix& rhs) const;

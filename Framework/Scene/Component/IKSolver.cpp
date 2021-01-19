@@ -136,7 +136,7 @@ void IKSolver::Solve_Jacobian(IKProblem& ikProblem)
 		if (i < 15)
 			_delta = 0.01f;
 		else
-			_delta = 0.1f;
+			_delta = 0.01f;
 
 		Matrix_V J;
 

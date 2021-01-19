@@ -2,6 +2,7 @@
 #include <vector>
 #include "Component/IComponent.h"
 #include "Chimera_Object.h"
+#include "Component/Setting_Actor.h"
 
 namespace Framework
 {
@@ -18,10 +19,6 @@ namespace Framework
 
 		bool Update();
 		void Init_Sample();
-		void Init_Camera();
-		void Init_Bone_Position();
-		void Init_Gizmo();
-		void Init_Grid();
 
 		std::vector<class IComponent*> GetComponents() { return _components; }
 
@@ -33,10 +30,12 @@ namespace Framework
 		template<typename T>
 		bool HasComponent() { return static_cast<bool>(GetComponent<T>()); }
 
+		class Setting_Actor* GetSetting() { return _setting; }
 
 	protected:
 		class Context* _context;
 		std::vector<class IComponent*> _components;
+		class Setting_Actor* _setting;
 	};
 
 	template<typename T>

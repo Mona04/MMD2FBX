@@ -53,7 +53,6 @@ namespace Framework
 		if (FileSystem::IsExistFile(path) == false)
 			return nullptr;
 		
-
 		Resources resources = GetResources<T>(); 
 		auto iter = resources.find(std::wstring(path));
 

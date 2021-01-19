@@ -2,6 +2,7 @@
 #include "Transform.h"
 
 #include "Resource/Skeletion.h"
+#include "../Actor.h"
 
 using namespace Framework;
 
@@ -9,8 +10,8 @@ Transform::Transform(class Context* context)
 	: IComponent(context)
 	, _parent(nullptr), _append_index(-1), _append_weight(0)
 	, _world(Matrix::identity), _world_before(Matrix::identity)
-	, _local_position(), _local_scale(1), _local_rotation(0,0,0,1)
-	, _anim_position(), _anim_scale(1), _anim_rotation(0,0,0,1), _ik_rotation(0,0,0,1)
+	, _local_position(), _local_scale(1), _local_rotation(0, 0, 0, 1)
+	, _anim_position(), _anim_scale(1), _anim_rotation(0, 0, 0, 1), _ik_rotation(0, 0, 0, 1)
 	, _offset(Matrix::identity)
 {
 	typecode = TypeCode::Transform;
@@ -43,7 +44,7 @@ void Transform::Clear()
 	_anim_rotation = { 0,0,0,1 };
 
 	_offset = Matrix::identity;
-	
+
 	for (Transform* child : _childs)
 		SAFE_DELETE(child);
 
@@ -123,11 +124,11 @@ void Transform::SetRotation(const Quaternion& vec)
 {
 	if (GetRotation() == vec)
 		return;
-	
+
 	if (HasParent())
 	{
-		// vec = child * parent; vec * parent_reverse = child;
-		Quaternion r = vec * Quaternion::QuaternionToReverse(_parent->GetRotation());
+		// vec = parent * child; parent_reverse * vec = child;
+		Quaternion r = Quaternion::QuaternionToReverse(_parent->GetRotation()) * vec;
 		r.Normalize();
 
 		SetLocalRotation(r);
@@ -150,6 +151,26 @@ void Transform::SetPosition(const Vector3& vec)
 void Transform::SetRotation_V(const Vector3& vec)
 {
 	SetRotation(vec.ToQuaternion());
+}
+
+// for physics or user control
+void Transform::Set_Physics(const Matrix& m)
+{
+	if (_world == m)
+		return;
+	auto tmp = m;  // global or local
+	if (HasParent())
+	{
+		// global = parent * local;
+		tmp = _parent->GetWorldMatrix().Inverse_SRT() * tmp; // tmp is local
+	}
+	// local = _physics * loc_calced;
+	auto pos = Matrix::MatrixToPosition(tmp);
+	auto rot = Matrix::MatrixToRotation(tmp);
+	_physics_pos = pos - (_calced_local_pos - _physics_pos);
+	_physics_rot = rot * _physics_rot.Inverse() * _calced_local_rot;
+
+	UpdateTransform();
 }
 
 void Transform::Translate(const Vector3& vec)
@@ -207,12 +228,12 @@ void Transform::AddChild(Transform* child)
 		LOG_ERROR("Null child");
 		return;
 	}
-	for(Transform * m_child : _childs)
+	for (Transform* m_child : _childs)
 	{
 		if (m_child == child)
 		{
 			LOG_WARNING("child already have included")
-			return;
+				return;
 		}
 	}
 
@@ -237,6 +258,7 @@ Transform* Transform::AddChild()
 	}
 
 	child->_parent = this;
+	child->_actor = this->_actor;
 	_childs.emplace_back(child);
 
 	return child;
@@ -249,7 +271,7 @@ void Transform::Set_Skeleton(std::wstring_view path, bool isMMD)
 	if (!_skeleton)
 		LOG_WARNING("Invalid new Skeleton. Check Path or File.")
 
-	Construct_Transform_Array(); // tree 돌면서 얻는건 비효율적이기 때문에 array 로 미리 만듬.	
+		Construct_Transform_Array(); // tree 돌면서 얻는건 비효율적이기 때문에 array 로 미리 만듬.	
 }
 
 void Transform::Construct_Transform_Array()
@@ -261,12 +283,13 @@ void Transform::Construct_Transform_Array()
 	Construct_Transform_Array_Recursive(_skeleton->GetRoot(), this, _all_transform);
 	for (auto transform : _all_transform)
 	{
-		if(transform) transform->_all_transform = _all_transform;
+		if (transform) transform->_all_transform = _all_transform;
 	}
 }
 
 void Transform::Construct_Transform_Array_Recursive(Bone& bone, Transform* node, std::vector<Transform*>& all_trans)
-{;
+{
+	;
 	if (bone.index >= 0)
 	{
 		all_trans[bone.index] = node;
@@ -278,28 +301,40 @@ void Transform::Construct_Transform_Array_Recursive(Bone& bone, Transform* node,
 		node->_append_index = bone.append_index;
 		node->_append_weight = bone.append_weight;
 	}
-	for(auto& bone : bone.childs)
+	for (auto& bone : bone.childs)
 		Construct_Transform_Array_Recursive(bone, node->AddChild(), _all_transform);
 }
 
 void Transform::UpdateTransform()
 {
-	_calced_local_rotation = _ik_rotation * _anim_rotation * _local_rotation;
-	_calced_local_position = _local_position + _anim_position;
+	// step 1
+	_calced_local_rot = _ik_rotation * _anim_rotation * _local_rotation;
+	_calced_local_pos = _anim_position + _local_position;
 
+	// step 2
 	if (_append_index != -1)
 	{
 		auto appended = _all_transform[_append_index];
-		_calced_local_rotation = _calced_local_rotation * Math::Slerp(Quaternion(0, 0, 0, 1), appended->_calced_local_rotation, _append_weight);
-		_calced_local_position = _calced_local_position + Math::Lerp(Vector3(0), appended->_anim_position, _append_weight);
+		_calced_local_rot = _calced_local_rot * Math::Slerp(Quaternion(0, 0, 0, 1), appended->_calced_local_rot, _append_weight);
+		_calced_local_pos = _calced_local_pos + Math::Lerp(Vector3(0), appended->_anim_position, _append_weight);
 	}
-	_calced_local_rotation.Normalize();
+	_calced_local_rot.Normalize();
 
+	// step 3
+	if (_actor->GetSetting()->UsePhysics())
+	{
+		_calced_local_rot = _physics_rot * _calced_local_rot;
+		_calced_local_pos = _physics_pos + _calced_local_pos;
+		_calced_local_rot.Normalize();
+	}
+
+	// step 4
 	Matrix S, R, T;
-	S = Matrix::ScaleToMatrix(_local_scale * _anim_scale);
-	R = Matrix::QuaternionToMatrix(_calced_local_rotation);
-	T = Matrix::PositionToMatrix(_calced_local_position);
+	S = Matrix::ScaleToMatrix(_anim_scale * _local_scale);
+	R = Matrix::QuaternionToMatrix(_calced_local_rot); // 왜 여기냐면 physics 는 append 고려 못함
+	T = Matrix::PositionToMatrix(_calced_local_pos);
 
+	// step 5
 	Matrix _local = T * R * S;
 
 	if (HasParent())
@@ -307,6 +342,7 @@ void Transform::UpdateTransform()
 	else
 		_world = _local;
 
+	// step 6
 	for (const auto& child : _childs)
 		child->UpdateTransform();
 }

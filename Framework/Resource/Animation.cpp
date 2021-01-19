@@ -28,26 +28,31 @@ bool Animation::LoadFromFile(std::wstring_view path)
 		stream.Read(_isMMD);
 		stream.Read(_isLoop);
 		stream.Read(_use_ik);
+		stream.Read(_use_physics);
 
 		uint nChannels = stream.ReadUInt();
 		_channels.resize(nChannels);
-
 		for (auto& channel : _channels)
 			channel.LoadFromFile(stream);
 
 		nChannels = stream.ReadUInt();
-		for (int i = 0; i < nChannels; i++)
+		for(int i = 0 ; i < nChannels; i++)
 		{
 			std::wstring name;
 			stream.Read(name);
 			_morph_channels[name].LoadFromFile(stream);
 		}
+
+		uint nKeys = stream.ReadUInt();
+		_camera_keys.resize(nKeys);		
+		for (auto& key : _camera_keys)
+			key.LoadFromFile(stream);
 	}
 
 	return true;
 }
 
-bool Animation::SaveToFile(std::wstring_view path)
+bool Animation::SaveToFile(std::wstring_view path) const
 {
 	FileStream stream;
 	stream.Open(std::wstring(path), StreamMode::Write);
@@ -57,6 +62,7 @@ bool Animation::SaveToFile(std::wstring_view path)
 		stream.Write(_isMMD);
 		stream.Write(_isLoop);
 		stream.Write(_use_ik);
+		stream.Write(_use_physics);
 
 		stream.Write(static_cast<uint>(_channels.size()));
 		for (auto& channel : _channels)
@@ -68,6 +74,10 @@ bool Animation::SaveToFile(std::wstring_view path)
 			stream.Write(pair.first);
 			pair.second.SaveToFile(stream);
 		}
+
+		stream.Write(static_cast<uint>(_camera_keys.size()));
+		for (auto& key : _camera_keys)
+			key.SaveToFile(stream);
 	}
 
 	return true;
@@ -83,9 +93,13 @@ void Animation::Clear()
 
 	_morph_channels.clear();
 
+	_camera_keys.clear();
+	_camera_keys.shrink_to_fit();
+
 	_isMMD = false;
 	_isLoop = true;
-	_use_ik = true;
+	_use_ik = false;
+	_use_physics = false;
 }
 
 
@@ -95,23 +109,21 @@ void Animation::Clear()
 void Bone_Key::LoadFromFile(FileStream& stream)
 {
 	stream.Read(pos);
-	stream.Read(scale);
 	stream.Read(rot);
-	stream.Read(bezier_x[0]);   stream.Read(bezier_x[1]);
-	stream.Read(bezier_y[0]);   stream.Read(bezier_y[1]);
-	stream.Read(bezier_z[0]);   stream.Read(bezier_z[1]);
+	stream.Read(bezier_x[0]); stream.Read(bezier_x[1]);
+	stream.Read(bezier_y[0]); stream.Read(bezier_y[1]);
+	stream.Read(bezier_z[0]); stream.Read(bezier_z[1]);
 	stream.Read(bezier_rot[0]); stream.Read(bezier_rot[1]);
 	stream.Read(frame);
 }
 
-void Bone_Key::SaveToFile(FileStream& stream)
+void Bone_Key::SaveToFile(FileStream& stream) const
 {
 	stream.Write(pos);
-	stream.Write(scale);
 	stream.Write(rot);
-	stream.Write(bezier_x[0]);   stream.Write(bezier_x[1]);
-	stream.Write(bezier_y[0]);   stream.Write(bezier_y[1]);
-	stream.Write(bezier_z[0]);   stream.Write(bezier_z[1]);
+	stream.Write(bezier_x[0]); stream.Write(bezier_x[1]);
+	stream.Write(bezier_y[0]); stream.Write(bezier_y[1]);
+	stream.Write(bezier_z[0]); stream.Write(bezier_z[1]);
 	stream.Write(bezier_rot[0]); stream.Write(bezier_rot[1]);
 	stream.Write(frame);
 }
@@ -126,7 +138,7 @@ void Bone_Channel::LoadFromFile(FileStream& stream)
 		key.LoadFromFile(stream);
 }
 
-void Bone_Channel::SaveToFile(FileStream& stream)
+void Bone_Channel::SaveToFile(FileStream& stream) const
 {
 	uint nKeys = static_cast<uint>(keys.size());
 	stream.Write(nKeys);
@@ -155,7 +167,7 @@ void Morph_Key::LoadFromFile(FileStream& stream)
 	stream.Read(frame);
 }
 
-void Morph_Key::SaveToFile(FileStream& stream)
+void Morph_Key::SaveToFile(FileStream& stream) const
 {
 	stream.Write(weight);
 	stream.Write(frame);
@@ -171,7 +183,7 @@ void Morph_Channel::LoadFromFile(FileStream& stream)
 		key.LoadFromFile(stream);
 }
 
-void Morph_Channel::SaveToFile(FileStream& stream)
+void Morph_Channel::SaveToFile(FileStream& stream) const
 {
 	uint nKeys = static_cast<uint>(keys.size());
 	stream.Write(nKeys);
@@ -191,4 +203,32 @@ const Morph_Key Morph_Channel::Get_Key(uint index) const
 		return Morph_Key();
 
 	return keys[index];
+}
+
+void Camera_Key::LoadFromFile(FileStream& stream)
+{
+	stream.Read(pos);
+	stream.Read(rot);
+	stream.Read(bezier_x[0]);   stream.Read(bezier_x[1]);
+	stream.Read(bezier_y[0]);   stream.Read(bezier_y[1]);
+	stream.Read(bezier_z[0]);   stream.Read(bezier_z[1]);
+	stream.Read(bezier_rot[0]); stream.Read(bezier_rot[1]);
+	stream.Read(bezier_dis[0]); stream.Read(bezier_dis[1]);
+	stream.Read(bezier_fov[0]); stream.Read(bezier_fov[1]);
+	stream.Read(distance);		stream.Read(fov);
+	stream.Read(frame);
+}
+
+void Camera_Key::SaveToFile(FileStream& stream) const
+{
+	stream.Write(pos);
+	stream.Write(rot);
+	stream.Write(bezier_x[0]);   stream.Write(bezier_x[1]);
+	stream.Write(bezier_y[0]);   stream.Write(bezier_y[1]);
+	stream.Write(bezier_z[0]);   stream.Write(bezier_z[1]);
+	stream.Write(bezier_rot[0]); stream.Write(bezier_rot[1]);
+	stream.Write(bezier_dis[0]); stream.Write(bezier_dis[1]);
+	stream.Write(bezier_fov[0]); stream.Write(bezier_fov[1]);
+	stream.Write(distance);		 stream.Write(fov);
+	stream.Write(frame);
 }

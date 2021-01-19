@@ -3,7 +3,6 @@
 
 #include "Scene/Scene.h"
 #include "Scene/Actor.h"
-#include "Scene/Component/Camera.h"
 
 
 using namespace Framework;
@@ -28,7 +27,6 @@ bool SceneManager::Init()
 {
 	// 생성자에 넣으면 충돌남
 	_default_camera = std::make_shared<Actor>(_context);
-	_default_camera->Init_Camera();
 
 	return true;
 }
@@ -89,20 +87,4 @@ bool SceneManager::SetCurrentScene(const std::string& name)
 		return true;
 	}
 	return false;
-}
-
-Camera* SceneManager::GetCurrentCamera()
-{
-	Camera* camera = nullptr;
-
-	if (_scene_current)
-	{
-		camera = _scene_current->GetCamera();
-	}
-	if (!camera)
-	{
-		camera = _default_camera->GetComponent<Camera>();
-	}
-
-	return camera;
 }

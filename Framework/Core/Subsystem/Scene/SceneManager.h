@@ -23,7 +23,6 @@ namespace Framework
 		void Clear_Scenes();
 		std::shared_ptr<class Scene> GetCurrentScene();
 		bool SetCurrentScene(const std::string& name);
-		class Camera* GetCurrentCamera();
 
 
 	protected:

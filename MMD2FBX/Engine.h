@@ -37,7 +37,8 @@ private:
 	HWND vmd_file_path;
 	HWND vmd_folder_path;
 
-	HWND ms_per_tick;
+	HWND tick_per_ms;
 	HWND frame_start;
 	HWND frame_end;
+	HWND use_physics;
 };

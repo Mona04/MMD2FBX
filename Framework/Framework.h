@@ -6,6 +6,15 @@
 #pragma comment (lib, "FreeImage.lib")
 #pragma comment (lib, "libfbxsdk.lib")
 
+#ifdef _DEBUG
+#pragma comment (lib, "BulletCollision_Debug.lib")
+#pragma comment (lib, "BulletDynamics_Debug.lib")
+#pragma comment (lib, "LinearMath_Debug.lib")
+#else
+#pragma comment (lib, "BulletCollision.lib")
+#pragma comment (lib, "BulletDynamics.lib")
+#pragma comment (lib, "LinearMath.lib")
+#endif
 
 #pragma warning(pop)
 
@@ -48,3 +57,4 @@ typedef unsigned int uint;
 #define Extension_TextureW L".texture"
 #define Extension_MorphW L".morph"
 #define Extension_AnimationW L".anim"
+#define Extension_RBInfoW L".rbinfo"

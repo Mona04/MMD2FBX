@@ -29,7 +29,7 @@ namespace Framework
 		DrawLine = 0x80,
 	};
 
-	enum class PMXSphereMode : uint8_t
+	enum class PMXSphereMode: uint8_t
 	{
 		None, // ¹«È¿
 		Mul,  // °ö
@@ -46,7 +46,7 @@ namespace Framework
 	struct Material_MMD
 	{
 		void Clear();
-		void SaveToFile(FileStream& stream);
+		void SaveToFile(FileStream& stream) const;
 		void LoadFromFile(FileStream& stream);
 
 		PMXDrawMode _draw_mode = PMXDrawMode::VertexColor;  // ¹¦È­ ÇÃ·¡±×
@@ -64,7 +64,7 @@ namespace Framework
 	struct Material_Common
 	{
 		void Clear();
-		void SaveToFile(FileStream& stream);
+		void SaveToFile(FileStream& stream) const;
 		void LoadFromFile(FileStream& stream);
 
 		Color4 _diffuse = { 1, 1, 1, 1 };   // °¨¼â»ö
@@ -80,9 +80,9 @@ namespace Framework
 	{
 	public:
 		enum class Type_Texture : uint {
-			None,
-			Diffuse, Specular, Ambient, Emissive, Height, Normal, Shininess, Opacity, Displacement,
-			Lightmap, Reflection, BaseColor, NormalCamera, EmissionColor,
+			None, 
+			Diffuse, Specular, Ambient, Emissive, Height, Normal, Shininess, Opacity, Displacement, 
+			Lightmap, Reflection, BaseColor, NormalCamera, EmissionColor, 
 			Metalness, DiffuseRoughness, AbientOcclusion,
 			Sphere, Toon  // MMD
 		};
@@ -97,8 +97,13 @@ namespace Framework
 		Material& operator=(Material&& rhs) = delete;
 
 		virtual bool LoadFromFile(std::wstring_view path) override;
-		virtual bool SaveToFile(std::wstring_view path) override;
+		virtual bool SaveToFile(std::wstring_view path) const override;
 		virtual void Clear() override;
+
+		void Update_Buffers();
+
+	private:
+		virtual bool CreateBuffer();
 
 	public:
 		void Set_MaterialName(const std::wstring& var) { _material_name = var; }
@@ -116,7 +121,8 @@ namespace Framework
 		void Set_IndexCount(uint var) { _index_count = var; }
 		uint& Get_IndexCount() { return _index_count; }
 
-	private:
+	private:	 
+		//std::vector<class Texture> _textures;
 		std::wstring _material_name = L"";
 		std::wstring _material_english_name = L"";
 

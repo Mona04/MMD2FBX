@@ -32,11 +32,8 @@
     <ClInclude Include="Resource\Skeletion.h" />
     <ClInclude Include="Resource\Texture.h" />
     <ClInclude Include="Scene\Component\Animator.h" />
-    <ClInclude Include="Scene\Component\Camera.h" />
     <ClInclude Include="Scene\Component\IComponent.h" />
     <ClInclude Include="Scene\Component\IKSolver.h" />
-    <ClInclude Include="Scene\Component\Light.h" />
-    <ClInclude Include="Scene\Component\Renderable.h" />
     <ClInclude Include="Scene\Component\Transform.h" />
     <ClInclude Include="Scene\Actor.h" />
     <ClInclude Include="Scene\Chimera_Object.h" />
@@ -52,7 +49,15 @@
     <ClInclude Include="Framework.h" />
     <ClInclude Include="MMD2FBX.h" />
     <ClInclude Include="VMD2Binary.h" />
-    <ClInclude Include="Resource\Morph.h" />
+    <ClInclude Include="Core\Subsystem\Physics\Physics_Ect.h" />
+    <ClInclude Include="Core\Subsystem\Physics\PhysicsManager.h" />
+    <ClInclude Include="Resource\RBInfo.h" />
+    <ClInclude Include="Util\Helper_BulletPhysics.h" />
+    <ClInclude Include="Scene\Component\RigidBody.h" />
+    <ClInclude Include="Scene\Component\Setting_Actor.h" />
+    <ClInclude Include="Scene\Component\Renderable.h" />
+    <ClInclude Include="Resource\Morphs.h" />
+    <ClInclude Include="Math\UInt8Vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Subsystem\Function\Thread.cpp" />
@@ -82,10 +87,7 @@
     <ClCompile Include="Resource\Skeletion.cpp" />
     <ClCompile Include="Resource\Texture.cpp" />
     <ClCompile Include="Scene\Component\Animator.cpp" />
-    <ClCompile Include="Scene\Component\Camera.cpp" />
     <ClCompile Include="Scene\Component\IKSolver.cpp" />
-    <ClCompile Include="Scene\Component\Light.cpp" />
-    <ClCompile Include="Scene\Component\Renderable.cpp" />
     <ClCompile Include="Scene\Component\Transform.cpp" />
     <ClCompile Include="Scene\Actor.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
@@ -98,6 +100,14 @@
     <ClCompile Include="MMD2FBX.cpp" />
     <ClCompile Include="MMD2FBX_EX.cpp" />
     <ClCompile Include="VMD2Binary.cpp" />
-    <ClCompile Include="Resource\Morph.cpp" />
+    <ClCompile Include="Core\Subsystem\Physics\Physics_Ect.cpp" />
+    <ClCompile Include="Core\Subsystem\Physics\PhysicsManager.cpp" />
+    <ClCompile Include="Resource\RBInfo.cpp" />
+    <ClCompile Include="Scene\Component\RigidBody.cpp" />
+    <ClCompile Include="Scene\Component\Setting_Actor.cpp" />
+    <ClCompile Include="Scene\Component\Renderable.cpp" />
+    <ClCompile Include="Resource\Importer\MMD_Importer.cpp" />
+    <ClCompile Include="Resource\Importer\MMD_Importer_Physics.cpp" />
+    <ClCompile Include="Resource\Morphs.cpp" />
   </ItemGroup>
 </Project>

@@ -18,12 +18,6 @@ namespace Framework
 		SkeletalMesh& operator=(SkeletalMesh&& rhs) = delete;
 
 		virtual bool LoadFromFile(std::wstring_view path) override;
-		virtual bool SaveToFile(std::wstring_view path) override;
-
-	private:
-		virtual bool CreateBuffer() override;
-
-	private:
-		
+		virtual bool SaveToFile(std::wstring_view path) const override;
 	};
 }

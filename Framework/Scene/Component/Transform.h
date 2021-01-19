@@ -35,9 +35,8 @@ namespace Framework
 		const Quaternion& GetIKRotation() const { return _ik_rotation; }
 		void SetIKRotation(const Quaternion& vec) { _ik_rotation = vec; }
 
-		const Quaternion& GetCalcLocalRot() const { return _calced_local_rotation; }
-		const Vector3& GetCalcLocalPos() const { return _calced_local_position; }
-
+		const Quaternion& GetPhysicsRot() const { return _physics_rot; }
+		const Vector3& GetPhysicsPos() const { return _physics_pos; }
 		//=============================================
 
 	public:
@@ -57,13 +56,20 @@ namespace Framework
 		void SetPosition(const Vector3& vec);
 		void SetRotation_V(const Vector3& vec);
 
-
 		void Translate(const Vector3& vec);
 		void Translate_Fixed_Axis(const Vector3& vec);
 		void Translate_Local(const Vector3& vec);
 		void Rotate_V(const Vector3& vec, bool bZ = true);
 		void Rotate_Local_V(const Vector3& vec, bool bZ = true);
 		//======================================================
+
+	public:
+		//=====================================================
+		// Physics
+		Vector3 GetCalcLocalPos() { return _calced_local_pos; }
+		Quaternion GetCalcLocalRot() { return _calced_local_rot; }
+		void Set_Physics(const Matrix& m);
+		//=====================================================
 
 		//=============================================
 		//Tree
@@ -82,7 +88,7 @@ namespace Framework
 
 		//======================================================
 		//Extra
-		int Get_AppendIndex() { return _append_index; }
+		// inverse of parent2child. multipling with this makes global_position local_space_position; 
 		const Matrix GetOffset() { return _offset; }
 		void SetOffset(const Matrix& var) { _offset = var; }
 
@@ -114,8 +120,11 @@ namespace Framework
 
 		Quaternion _ik_rotation;
 
-		Quaternion _calced_local_rotation;  // appended 계산용
-		Vector3 _calced_local_position; 
+		Vector3 _physics_pos = 0;
+		Quaternion _physics_rot = { 0,0,0,1 };
+
+		Quaternion _calced_local_rot;  // appended 계산용
+		Vector3 _calced_local_pos; 
 
 		Matrix _offset;  // Not Tree Structured value, Must be multiplied once !!!!!
 

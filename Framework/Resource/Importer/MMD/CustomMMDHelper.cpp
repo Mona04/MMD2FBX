@@ -43,11 +43,18 @@ std::string ReadPmxString(std::istream* _stream, int size)
 	return std::string(buffer);
 }
 
-void PreProcessing_MMD_Vector3(Vector3& in, bool isPosition)
+void PreProcess_MMD_Vector3(Vector3& in, bool bScale)
 {
-	//in.z *= -1;
-	if (isPosition)
+	if (bScale)
 	{
-		in *= 0.2f;
+		//in *= 0.2f;
 	}
+}
+
+Vector3 PreProcess_MMD_Vector3(float x, float y, float z, bool bScale)
+{
+	Vector3 result(x, y, z);
+	//if(bScale)
+	//	result *= 0.2f;
+	return result;
 }

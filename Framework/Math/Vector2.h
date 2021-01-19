@@ -1,4 +1,5 @@
 #pragma once
+#include "UInt8Vector2.h"
 
 class Vector2 final
 {
@@ -6,6 +7,7 @@ public:
 	Vector2();
 	Vector2(float x);
 	Vector2(float x, float y);
+	Vector2(const UInt8Vector2& vec) : x(vec.x* (1.f / 127.f)), y(vec.y* (1.f / 127.f)) {}
 	~Vector2() = default;
 
 	bool operator!=(const Vector2& rhs) const;

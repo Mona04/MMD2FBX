@@ -2,7 +2,6 @@
 #include "VMD2Binary.h"
 
 #include "Scene/Actor.h"
-#include "Scene/Component/Renderable.h"
 #include "Scene/Component/Transform.h"
 #include "Scene/Component/Animator.h"
 #include "Resource/Animation.h"
@@ -23,71 +22,43 @@ VMD2Binary::~VMD2Binary()
 bool VMD2Binary::Init(Actor* actor, int frame_start, int frame_end)
 {
 	_actor = actor;
-	_start_frame = frame_start;
-	_end_frame = frame_end;
 
 	auto src_animation = _actor->GetComponent<Animator>()->GetAnimation();
 	_ms_per_tick = src_animation->Get_MsPerTic();
 	auto _num_src_bone = actor->GetComponent<Transform>()->Get_Transform_Array().size();
 	_channels_data = std::vector<Bone_Channel>(_num_src_bone);
 
+	_start_frame = frame_start;
+	_end_frame = frame_end;
+	if (_end_frame == -1)
+		_end_frame = src_animation->Get_Duration();
+
 	if (frame_start == 0 && frame_end == -1)
 	{
-		for (auto i = 0; i < src_animation->Get_Channels().size(); i++)
-		{
-			const auto& src_channel = src_animation->Get_Channels()[i];
-			auto& dst_channel = _channels_data[i];
-
-			dst_channel.keys.resize(src_channel.keys.size());
-			std::copy(src_channel.keys.begin(), src_channel.keys.end(), dst_channel.keys.data());
-		}
-
 		for (const auto& src_morph : src_animation->Get_Morph_Channels())
 		{
 			auto& dst_channel = _morph_channels_data[src_morph.first];
-
+	
 			dst_channel.keys.resize(src_morph.second.keys.size());
 			std::copy(src_morph.second.keys.begin(), src_morph.second.keys.end(), dst_channel.keys.data());
 		}
 	}
 	else
 	{
-		for (auto i = 0; i < src_animation->Get_Channels().size(); i++)
-		{
-			const auto& src_channel = src_animation->Get_Channels()[i];
-			auto& dst_channel = _channels_data[i];
-			for (auto j = 0; j < src_channel.keys.size(); j++)
-			{
-				const auto& key = src_channel.keys[j];
-				if (key.frame >= frame_start && key.frame <= frame_end)
-				{
-					const auto& src_key = src_channel.keys[j];
-					auto& key = dst_channel.Add_Key();
-					memcpy(&key, &src_key, sizeof(key));
-					key.frame -= frame_start;
-
-					if (_end_frame < key.frame) // check endframe
-						_end_frame = key.frame;
-				}
-			}
-		}
 		for (const auto& src_morph : src_animation->Get_Morph_Channels())
 		{
 			const auto& src_channel = src_morph.second;
 			auto& dst_channel = _morph_channels_data[src_morph.first];
-
+	
 			for (auto j = 0; j < src_channel.keys.size(); j++)
 			{
 				const auto& key = src_channel.keys[j];
-				if (key.frame >= frame_start && key.frame <= frame_end)
+				if (key.frame >= frame_start && key.frame <= _end_frame)
 				{
 					const auto& src_key = src_channel.keys[j];
 					auto& key = dst_channel.Add_Key();
 					memcpy(&key, &src_key, sizeof(key));
 					key.frame -= frame_start;
-
-					if (_end_frame < key.frame) // check endframe
-						_end_frame = key.frame;
 				}
 			}
 		}
@@ -104,27 +75,18 @@ void VMD2Binary::Clear()
 
 bool VMD2Binary::Record_Animation_Frame(int cur_tik)
 {
-	const auto& boneMap = _actor->GetComponent<Transform>()->Get_Skeleton()->GetBoneMap();
-	const auto& transform_array = _actor->GetComponent<Transform>()->Get_Transform_Array();
-	for (auto iter = boneMap.begin(); iter != boneMap.end(); iter++)
+	const auto& bone_array = _actor->GetComponent<Transform>()->Get_Transform_Array();
+
+	for (int i = 0; i < bone_array.size(); i++)
 	{
-		std::vector<int> indices;
-
-		for (const auto& ikchain : iter->second.ikLinks)
+		const auto bone = bone_array[i];
+		if (bone)
 		{
-			auto target_index = ikchain.ikBoneIndex;
-			if (target_index != -1)
-			{
-				if (cur_tik == 0)
-					_channels_data[target_index].keys.clear();
-
-				auto& key = _channels_data[target_index].Add_Key();
-				const auto& trans = transform_array[target_index];
-				key.pos = trans->GetAnimPosition();
-				key.rot = trans->GetIKRotation() * trans->GetAnimRotation();
-				key.scale = Vector3(1, 1, 1);
-				key.frame = cur_tik;
-			}
+			auto& key = _channels_data[i].Add_Key();
+			const auto& trans = bone_array[i];
+			key.pos = trans->GetPhysicsPos() + trans->GetAnimPosition();
+			key.rot = trans->GetPhysicsRot() * trans->GetIKRotation() * trans->GetAnimRotation();
+			key.frame = cur_tik;
 		}
 	}
 
@@ -147,6 +109,8 @@ bool VMD2Binary::Export(const std::wstring_view path, Context* context)
 	animation->Set_IsLoop(false);
 	animation->Set_IsMMD(true);
 	animation->Set_UseIK(false);
+	animation->Set_UsePhysics(false);
+
 	if (_end_frame < 0)
 		animation->Set_Duration(src_animation->Get_Duration() - _start_frame);
 	else

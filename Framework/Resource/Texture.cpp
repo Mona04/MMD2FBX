@@ -60,7 +60,7 @@ bool Texture::LoadFromFile(std::wstring_view path)
 	return true;
 }
 
-bool Texture::SaveToFile(std::wstring_view path)
+bool Texture::SaveToFile(std::wstring_view path) const
 {
 	if (FileSystem::GetFileExtensionFromPath(path) != Extension_TextureW)
 		return true;
@@ -77,7 +77,7 @@ bool Texture::SaveToFile(std::wstring_view path)
 
 		for (int i = 0; i < n_mipChain; i++)
 		{
-			std::vector<std::byte>& mipChain = m_mipChains[i];
+			const std::vector<std::byte>& mipChain = m_mipChains[i];
 			stream.Write(mipChain);
 		}
 		stream.Write(m_bpp);

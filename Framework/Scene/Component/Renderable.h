@@ -10,10 +10,10 @@ namespace Framework
 		struct Morph_Package
 		{
 			Morph_Package() : weight(-1), morph(nullptr) {}
-			Morph_Package(float weight, std::shared_ptr<class Morph> morph)
+			Morph_Package(float weight, class Morph* morph)
 				: weight(weight), morph(morph) {}
 			float weight;
-			std::shared_ptr<class Morph> morph;
+			class Morph* morph;
 		};
 
 	public:
@@ -40,9 +40,8 @@ namespace Framework
 		void DeleteMaterial(uint i);;
 
 		std::map<std::wstring, Morph_Package>& GetMorphs() { return _morphs; }
-		void SetMorphs(std::vector<std::wstring_view>& paths);
-		void AddMorph(std::wstring_view path);
-		void DeleteMorph(uint i);;
+		void SetMorphs(std::wstring_view paths);
+		void DeleteMorphs();
 
 	public:
 		bool IsMMD() { return _isMMD; }
@@ -51,16 +50,14 @@ namespace Framework
 		void SetIsFBX(bool var) { _isFBX = var; }
 		bool IsMorphed() { return _isMorphed; }
 
-	public:
-		void SetRenderMesh();
-		void SetCube();
-		void SetGizmo();
-		void SetGrid();
+		void SetMorphWeight(float weight, const std::wstring& name);
 
 	protected:
 		std::vector<std::shared_ptr<class Mesh>> _meshes;
 		std::vector<std::shared_ptr<class Material>> _materials;
 		std::map<std::wstring, Morph_Package> _morphs;
+
+		std::vector<struct Vertex_MASTER> _vertices_copy;
 
 		bool _isMMD = false;
 		bool _isFBX = false;

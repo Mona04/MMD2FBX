@@ -18,7 +18,7 @@ namespace Framework
 		Texture& operator=(Texture&& rhs) = delete;
 
 		virtual bool LoadFromFile(std::wstring_view path) override;
-		virtual bool SaveToFile(std::wstring_view path) override;
+		virtual bool SaveToFile(std::wstring_view path) const  override;
 		virtual void Clear() override;
 
 		void Clear_MipChain();

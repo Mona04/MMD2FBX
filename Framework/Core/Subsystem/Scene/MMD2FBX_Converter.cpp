@@ -9,6 +9,8 @@
 #include "Resource/Importer/MMD_Importer.h"
 #include "Resource/Animation.h"
 
+#include "Core/Subsystem/Physics/PhysicsManager.h"
+
 using namespace Framework;
 
 
@@ -51,6 +53,12 @@ void MMD2FBX_Converter::Update()
 	{
 		_is_complete = true;
 		return;
+	}
+
+	if (_cur_frame == 0)// 초반 안정화
+	{
+		for (int i = 0; i < 100; i++)
+			_context->GetSubsystem<PhysicsManager>()->Update();;
 	}
 
 	auto animator = _actor->GetComponent<Animator>();
@@ -139,6 +147,7 @@ void MMD2FBX_Converter::SetSampleActor(const std::wstring& model_path, const std
 		if (_is_for_binary)
 		{
 			_binary_exporter.Init(_actor, _start_frame, _end_frame);
+			Set_Ms_per_Tick(1000.f/30.f);
 			// fixed to original vmd animation pixel per tick;
 			if (_end_frame < 0) // without end_frame setting
 			{
@@ -158,6 +167,8 @@ void MMD2FBX_Converter::SetSampleActor(const std::wstring& model_path, const std
 			}
 		}
 
+		_actor->GetSetting()->Set_UsePhysics(_use_physics);
+		_context->GetSubsystem<PhysicsManager>()->Set_Use_Physics(_use_physics);
 		_actor->GetComponent<Animator>()->SetCurrentFrame(_start_frame);
 	}	
 }
@@ -172,6 +183,7 @@ void MMD2FBX_Converter::Set_Ms_per_Tick(float var)
 {
 	_ms_per_tick = var;
 	_exporter.Set_ms_per_tick(var);
+	_context->GetSubsystem<PhysicsManager>()->Set_MS_Per_Tick(var);
 	if (_actor)
 	{
 		auto animator = _actor->GetComponent<Animator>();

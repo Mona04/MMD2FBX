@@ -3,6 +3,7 @@
 
 #include "Scene/Actor.h"
 #include "Scene/Component/Transform.h"
+#include "Scene/Component/IKSolver.h"
 #include "Resource/Animation.h"
 
 #include "Core/Subsystem/Resource/ResourceManager.h"
@@ -38,17 +39,17 @@ bool Animator::Update()
 
 			_current_accumulated_delta_time_ms -= _animation->Get_MsPerTic();
 			_current_frame += 1;
-			if (_current_frame >= _animation->Get_Duration())
+			if (_current_frame > _animation->Get_Duration())
 			{
 				if (_animation->IsLoop())
 				{
-					_current_frame = 1; // mixamo 는 처음과 끝이 같은 프레임이라 1로 해야함
+					_current_frame = 1; 
 					ZeroMemory(_current_key_index_map.data(), _current_key_index_map.size() * sizeof(uint));
 				}
 				else
 				{
 					_isEnd = true;
-					_current_frame = _animation->Get_Duration() - 1;
+					_current_frame = _animation->Get_Duration();
 				}
 			}
 		}
@@ -63,6 +64,11 @@ void Animator::Clear()
 	_root = nullptr;
 	_current_frame = 0;
 	_current_accumulated_delta_time_ms = 0;
+
+	_isEnd = false;
+	_isPlaying = false;
+
+	_animation = nullptr;
 }
 
 void Animator::SetAnimation(std::wstring_view path)
@@ -72,16 +78,26 @@ void Animator::SetAnimation(std::wstring_view path)
 	auto mgr = _context->GetSubsystem<ResourceManager>();
 
 	_animation = mgr->GetResource<Animation>(path);
-	if (_root == nullptr) _root = _actor->GetComponent<Transform>();
+	if (_animation == nullptr)
+	{
+		LOG_ERROR("Failed load Animation");
+		_actor->GetSetting()->Set_UseIK(false);
+		return;
+	}
+
+	_root = _actor->GetComponent<Transform>();
 
 	_current_key_index_map.resize(_animation->Get_Channels().size());
 	ZeroMemory(_current_key_index_map.data(), _current_key_index_map.size() * sizeof(uint));
 
-	if (_animation == nullptr)
-	{
-		LOG_ERROR("Failed load Animation");
-		return;
-	}	
+	// setting Actor
+	_actor->GetSetting()->Set_UseIK(_animation->UseIK());
+	_actor->GetSetting()->Set_UsePhysics(_animation->UsePhysics());
+
+	// init animation
+	Animate();
+	_root->Update();
+	_actor->GetComponent<IKSolver>()->Update();
 }
 
 void Animator::Animate()
@@ -130,39 +146,51 @@ Bone_Key Animator::Get_KeyFrame_Matrix(int index)
 	return Interporate_Key(channel.Get_Key(result.first), channel.Get_Key(result.second));
 }
 
-std::pair<uint, uint> Animator::Update_Key_Index(uint frame_index, const Bone_Channel& channel)
+std::pair<uint, uint> Animator::Update_Key_Index(uint channel_index, const Bone_Channel& channel)
 {
-	uint maximum_index = channel.keys.size();
-	uint& current_index = _current_key_index_map[frame_index];
-	uint next_index = 1;
-	// mixamo 는 처음과 끝이 같은 프레임이라 1로 해야함
-	if (current_index + 1 >= maximum_index)
+	if (_isEnd)
+		return { _current_frame, _current_frame };
+
+	uint maximum_index = channel.keys.size() - 1;
+	uint& current_index = _current_key_index_map[channel_index];  // currnet_index 는 저장해야함
+	uint next_index = 0;  // 
+
+	if (current_index + 1 >= maximum_index) // 다음 cur_index 가 마지막의 경우
 	{
-		// 아직 frame 은 처음으로 안돌아옴
-		if (_current_frame > channel.Get_Key(current_index).frame)		
-			return { current_index, next_index };
+		if (_animation->IsLoop())
+		{
+			// 그리고 cur_index 를 올려야할 경우. return ( cur, 0)
+			if (_current_frame > channel.Get_Key(current_index).frame)
+			{
+				current_index++;
+				return { current_index, next_index };
+			}
+		}
+		else {
+			return { current_index + 1, current_index + 1 };
+		}
 	}
-	else {
+	else { // Normal Case or cur_index < current_frame < next_index
 		next_index = current_index + 1;
 	}
 
 	while (channel.Get_Key(next_index).frame < _current_frame)
-	{
-		current_index = (current_index + 1) >= maximum_index ? 1 : current_index + 1;
-		next_index = (current_index + 1) >= maximum_index ? 1 : current_index + 1;
-		// 아직 frame 이 처음으로 안들어가면
-		if (current_index > next_index && _current_frame > channel.Get_Key(current_index).frame)	
-			break;	
+	{		
+		//  next_index < current_index < current_framel 의 경우 제외
+		if (current_index > next_index && _current_frame > channel.Get_Key(current_index).frame)
+			break;
+		current_index = (current_index + 1) > maximum_index ? 1 : current_index + 1;
+		next_index = (current_index + 1) > maximum_index ? 1 : current_index + 1;
 	}
 
 	return { current_index, next_index };
 }
 
-Bone_Key Animator::Interporate_Key(const Bone_Key& cur,const Bone_Key& after)
+Bone_Key Animator::Interporate_Key(const Bone_Key& cur, const Bone_Key& after)
 {
 	Bone_Key result;
 	float delta = _current_accumulated_delta_time_ms / _animation->Get_MsPerTic();
-	delta += (_current_frame - cur.frame) > 0 ? (_current_frame - cur.frame - 1) : (_animation->Get_Duration() - cur.frame + _current_frame - 1);	
+	delta += (_current_frame - cur.frame) > 0 ? (_current_frame - cur.frame) : (_animation->Get_Duration() - cur.frame + _current_frame);	
 	delta /= (after.frame - cur.frame) > 0 ? (after.frame - cur.frame) : (_animation->Get_Duration() - cur.frame + after.frame);
 	delta = delta > 1 ? 1 : delta;
 
@@ -171,15 +199,13 @@ Bone_Key Animator::Interporate_Key(const Bone_Key& cur,const Bone_Key& after)
 		result.pos.x = Math::Lerp(cur.pos.x, after.pos.x, Math::Bezier3(Vector2(0), cur.bezier_x[0], cur.bezier_x[1], Vector2(1, 1), delta).y);
 		result.pos.y = Math::Lerp(cur.pos.y, after.pos.y, Math::Bezier3(Vector2(0), cur.bezier_y[0], cur.bezier_y[1], Vector2(1, 1), delta).y);
 		result.pos.z = Math::Lerp(cur.pos.z, after.pos.z, Math::Bezier3(Vector2(0), cur.bezier_z[0], cur.bezier_z[1], Vector2(1, 1), delta).y);
-		// 조금이라도 빨리할려고 slerp 말고 lerp 씀. 별로 차이도 안나는데 ㅇㅇ
 		result.rot = Math::Lerp(cur.rot, after.rot, Math::Bezier3(Vector2(0), cur.bezier_rot[0], cur.bezier_rot[1], Vector2(1, 1), delta).y);
 		result.frame = cur.frame + delta;
 	}
 	else
 	{
 		result.pos = Math::Lerp(cur.pos, after.pos, delta);
-		result.scale = Math::Lerp(cur.scale, after.scale, delta);
-		result.rot = Math::Lerp(cur.rot, after.rot, delta);
+		result.rot = Math::Slerp(cur.rot, after.rot, delta);
 		result.frame = cur.frame + delta;
 	}
 

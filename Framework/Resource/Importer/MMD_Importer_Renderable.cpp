@@ -10,121 +10,18 @@
 #include "Framework/Resource/SkeletalMesh.h"
 #include "framework/Resource/Skeletion.h"
 #include "Framework/Resource/Material.h"
-#include "Framework/Resource/Animation.h"
-#include "Framework/Resource/Morph.h"
+#include "Framework/Resource/Morphs.h"
 
 #include "Framework/Scene/Actor.h"
-#include "Framework/Scene/Component/Renderable.h"
 #include "Framework/Scene/Component/Transform.h"
 #include "Framework/Scene/Component/Animator.h"
-#include "Framework/Scene/Component/IKSolver.h"
+#include "Framework/Scene/Component/Renderable.h"
+
 
 using namespace Framework;
 using namespace pmx;
 
 #define MMD_COMMON_DIRECTORYW (Relative_BasisW + L"_Assets/Texture/MMD/Common/")
-
-MMD_Importer::MMD_Importer()
-{
-}
-
-MMD_Importer::~MMD_Importer()
-{
-	Clear();
-}
-
-void MMD_Importer::Clear()
-{
-	if (_fb) {
-		_fb->close();
-		SAFE_DELETE(_fb);
-	}
-	if (_stream)
-		SAFE_DELETE(_stream);
-}
-
-bool MMD_Importer::Load_Model(std::wstring_view path, Actor* actor, Context* context)
-{
-	if (FileSystem::GetFileExtensionFromPath(path) != L".pmx")
-	{
-		LOG_ERROR("Invalid Form");
-		return false;
-	}
-	if (FileSystem::IsExistFile(path) == false)
-	{
-		LOG_ERROR("NO File");
-		return false;
-	}
-
-	_context = context;
-	auto renderable = actor->GetComponent<Renderable>();
-	auto transform = actor->GetComponent<Transform>();
-	auto iksolver = actor->GetComponent<IKSolver>();
-	if (!iksolver)
-		iksolver = actor->AddComponent<IKSolver>();
-
-	renderable->SetIsMMD(true);
-	renderable->Clear();
-
-	auto mgr = context->GetSubsystem<ResourceManager>();
-
-	Init_PMX(path);
-
-	LoadRenderable(renderable);
-	LoadTransform(transform);
-	iksolver->Init();
-	LoadMorph(renderable);
-	LoadPhysics();
-
-	Clear();
-
-	return true;
-}
-
-
-bool MMD_Importer::Init_PMX(std::wstring_view path)
-{
-	_basePath = FileSystem::GetFileDirectoryFromPath(path);
-	_basePathName = FileSystem::GetFileDirectoryFromPath(path) + FileSystem::GetIntactFileNameFromPath(path);
-
-	_fb = new std::filebuf();
-	if (!_fb->open(path.data(), std::ios::in | std::ios::binary))
-	{
-		LOG_WARNING("Can't open the " + FileSystem::ToString(path) + ", please check");
-		return false;
-	}
-
-	_stream = new std::istream(_fb);
-	if (!_stream)
-	{
-		LOG_WARNING("Failed to create IStream");
-		return false;
-	}
-
-	char magic[4];
-	_stream->read((char*)magic, sizeof(char) * 4);
-	if (magic[0] != 0x50 || magic[1] != 0x4d || magic[2] != 0x58 || magic[3] != 0x20)
-	{
-		std::cerr << "invalid magic number." << std::endl;
-		throw;
-	}
-
-	_stream->read((char*)&_version, sizeof(float));
-	if (_version != 2.0f && _version != 2.1f)
-	{
-		std::cerr << "this is not ver2.0 or ver2.1 but " << _version << "." << std::endl;
-		throw;
-	}
-
-	_setting.Read(_stream);
-
-	this->_model_name = std::move(ReadString(_stream, _setting.encoding));
-	this->_model_english_name = std::move(ReadString(_stream, _setting.encoding));
-	this->_model_comment = std::move(ReadString(_stream, _setting.encoding));
-	this->_model_english_comment = std::move(ReadString(_stream, _setting.encoding));
-
-	return true;
-}
 
 bool MMD_Importer::LoadRenderable(Renderable* renderable)
 {
@@ -135,8 +32,8 @@ bool MMD_Importer::LoadRenderable(Renderable* renderable)
 
 		LoadVertices(mesh);
 		LoadIndices(mesh);
-		//CalcTangent(mesh);
-
+		CalcTangent(mesh);		
+		
 		mgr->RegisterResource(mesh, _basePathName + Extension_SkMeshW);
 		renderable->AddMesh(mesh->GetPath());
 	}
@@ -179,8 +76,8 @@ bool MMD_Importer::LoadVertices(std::shared_ptr<class SkeletalMesh> mesh)
 		_stream->read((char*)(&v.normal), sizeof(float) * 3);
 		_stream->read((char*)(&v.uv), sizeof(float) * 2);
 
-		PreProcessing_MMD_Vector3(v.pos, true);
-		PreProcessing_MMD_Vector3(v.normal);
+		PreProcess_MMD_Vector3(v.pos, true);
+		PreProcess_MMD_Vector3(v.normal);
 
 		assert(v.uv.x <= 1.0f);
 
@@ -286,9 +183,9 @@ void MMD_Importer::CalcTangent(std::shared_ptr<class SkeletalMesh> mesh)
 		float r = 1.0f / (u0 * v1 - v0 * u1);  // 역행렬용
 
 		Vector3 normal = vertices[index0].normal;
-
+		
 		auto calced_normal = Vector3::Cross(e0, e1).Normalize();
-		if (calced_normal.Length() > 0.5)
+		if (calced_normal.Length() > 0.5)   // 없는 경우
 			normal = calced_normal;
 
 		Vector3 tangent;
@@ -385,12 +282,13 @@ bool MMD_Importer::LoadMaterial(std::shared_ptr<Material> material, const std::v
 bool MMD_Importer::LoadMorph(Renderable* renderable)
 {
 	auto mgr = _context->GetSubsystem<ResourceManager>();
+	auto morphs = std::make_shared<Morphs>(_context);
 
 	int morph_count = 0;
 	_stream->read((char*)&morph_count, sizeof(int));
 	for (int i = 0; i < morph_count; i++)
 	{
-		std::shared_ptr<Morph> morph = std::make_shared<Morph>(_context);
+		auto morph = morphs->AddMorph();
 
 		std::wstring morph_name;
 		std::wstring morph_english_name;
@@ -428,8 +326,8 @@ bool MMD_Importer::LoadMorph(Renderable* renderable)
 			{
 				offset.Read(_stream, &_setting);
 				Vector3 tmp = Vector3(offset.position_offset[0], offset.position_offset[1], offset.position_offset[2]);
-				PreProcessing_MMD_Vector3(tmp, true);
-				dst_offsets.push_back({ offset.vertex_index, tmp });
+				PreProcess_MMD_Vector3(tmp, true);
+				dst_offsets.push_back({ offset.vertex_index, tmp});
 			}
 			morph->Set_MorphType(Morph::MorphType::Vertex);   // 1:1 대응으로 안해놔서 따로따로 해야함
 			break;
@@ -487,10 +385,8 @@ bool MMD_Importer::LoadMorph(Renderable* renderable)
 		}
 		default:
 			throw;
-		}
-
-
-		mgr->RegisterResource(morph, _basePathName + std::to_wstring(i) + Extension_MorphW);
-		renderable->AddMorph(morph->GetPath());
+		}		
 	}
+	mgr->RegisterResource(morphs, _basePathName + Extension_MorphW);
+	renderable->SetMorphs(morphs->GetPath());
 }

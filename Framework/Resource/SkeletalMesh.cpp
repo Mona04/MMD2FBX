@@ -1,8 +1,9 @@
 #include "Framework.h"
 #include "SkeletalMesh.h"
 
-#include "Util/Geomerty_Generator.h"
 #include "Core/DirectX/0_IADesc/Input_Desc.h"
+
+#include "Util/Geomerty_Generator.h"
 
 
 using namespace Framework;
@@ -25,7 +26,7 @@ bool SkeletalMesh::LoadFromFile(std::wstring_view path)
 	{
 		stream.Read(_material_index);
 		{
-			int size = stream.ReadUInt(); if (size > 10000000) return false;			
+			int size = stream.ReadUInt(); if (size > 10000000) return false;
 			_vertices.reserve(size);
 			_vertices.resize(size);
 			for (auto& v : _vertices)
@@ -38,8 +39,8 @@ bool SkeletalMesh::LoadFromFile(std::wstring_view path)
 				stream.Read(v.bone_index[0]); stream.Read(v.bone_index[1]); stream.Read(v.bone_index[2]); stream.Read(v.bone_index[3]);
 				stream.Read(v.bone_weight[0]); stream.Read(v.bone_weight[1]); stream.Read(v.bone_weight[2]); stream.Read(v.bone_weight[3]);
 
-				if (isnan(v.normal.x) || isinf(v.normal.x) || isnan(v.tangent.x) || isinf(v.tangent.x) 
-					|| isinf(v.binormal.x) || isinf(v.binormal.x) || isnan(v.normal.Length()) || isinf(v.normal.Length()) )
+				if (isnan(v.normal.x) || isinf(v.normal.x) || isnan(v.tangent.x) || isinf(v.tangent.x)
+					|| isinf(v.binormal.x) || isinf(v.binormal.x) || isnan(v.normal.Length()) || isinf(v.normal.Length()))
 				{
 					v.tangent = v.normal;
 					v.tangent.x += 0.01f;
@@ -58,12 +59,10 @@ bool SkeletalMesh::LoadFromFile(std::wstring_view path)
 	}
 	stream.Close();
 
-	CreateBuffer();
-
 	return true;
 }
 
-bool SkeletalMesh::SaveToFile(std::wstring_view path)
+bool SkeletalMesh::SaveToFile(std::wstring_view path) const
 {
 	FileStream stream;
 	stream.Open(std::wstring(path), StreamMode::Write);
@@ -89,10 +88,5 @@ bool SkeletalMesh::SaveToFile(std::wstring_view path)
 	}
 	stream.Close();
 
-	return true;
-}
-
-bool SkeletalMesh::CreateBuffer()
-{
 	return true;
 }
