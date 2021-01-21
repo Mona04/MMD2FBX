@@ -23,11 +23,9 @@ namespace Framework
 		void SetLocalRotation(const Quaternion& vec);
 		void SetLocalPosition(const Vector3& vec);
 
-		const Vector3& GetAnimScale() const { return _anim_scale; }
 		const Quaternion& GetAnimRotation() const { return _anim_rotation; }
 		const Vector3& GetAnimPosition() const { return _anim_position; }
 
-		void SetAnimScale(const Vector3& vec) { _anim_scale = vec; }
 		void SetAnimRotation(const Quaternion& vec) { _anim_rotation = vec; }
 		void SetAnimPosition(const Vector3& vec) { _anim_position = vec; }
 		void SetAnimPosition_FBX(const Vector3& vec) { _anim_position = vec - _local_position; }
@@ -99,6 +97,8 @@ namespace Framework
 
 		void SetName(std::wstring_view name) { _name = name; }
 		std::wstring GetName() { return _name; }
+
+		int GetBoneIndex() { return _bone_index; }
 		//======================================================
 		
 	protected:
@@ -114,7 +114,6 @@ namespace Framework
 		Quaternion _local_rotation;
 		Vector3 _local_position;
 
-		Vector3 _anim_scale; 
 		Quaternion _anim_rotation;
 		Vector3 _anim_position;
 
@@ -138,6 +137,8 @@ namespace Framework
 		std::vector<Transform*> _all_transform;	
 
 		std::wstring _name;
+		int _bone_index = -1;
+
 		bool _isMMD = false;
 	};
 }

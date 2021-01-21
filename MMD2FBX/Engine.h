@@ -41,4 +41,5 @@ private:
 	HWND frame_start;
 	HWND frame_end;
 	HWND use_physics;
+	HWND use_jacobian;
 };

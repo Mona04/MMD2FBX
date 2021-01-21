@@ -11,7 +11,7 @@ Transform::Transform(class Context* context)
 	, _parent(nullptr), _append_index(-1), _append_weight(0)
 	, _world(Matrix::identity), _world_before(Matrix::identity)
 	, _local_position(), _local_scale(1), _local_rotation(0, 0, 0, 1)
-	, _anim_position(), _anim_scale(1), _anim_rotation(0, 0, 0, 1), _ik_rotation(0, 0, 0, 1)
+	, _anim_position(), _anim_rotation(0, 0, 0, 1), _ik_rotation(0, 0, 0, 1)
 	, _offset(Matrix::identity)
 {
 	typecode = TypeCode::Transform;
@@ -40,7 +40,6 @@ void Transform::Clear()
 	_local_rotation = { 0,0,0,1 };
 
 	_anim_position = { 0 };
-	_anim_scale = { 1, 1, 1 };
 	_anim_rotation = { 0,0,0,1 };
 
 	_offset = Matrix::identity;
@@ -271,7 +270,7 @@ void Transform::Set_Skeleton(std::wstring_view path, bool isMMD)
 	if (!_skeleton)
 		LOG_WARNING("Invalid new Skeleton. Check Path or File.")
 
-		Construct_Transform_Array(); // tree 돌면서 얻는건 비효율적이기 때문에 array 로 미리 만듬.	
+	Construct_Transform_Array(); // tree 돌면서 얻는건 비효율적이기 때문에 array 로 미리 만듬.	
 }
 
 void Transform::Construct_Transform_Array()
@@ -289,10 +288,10 @@ void Transform::Construct_Transform_Array()
 
 void Transform::Construct_Transform_Array_Recursive(Bone& bone, Transform* node, std::vector<Transform*>& all_trans)
 {
-	;
 	if (bone.index >= 0)
 	{
 		all_trans[bone.index] = node;
+		node->_bone_index = bone.index;
 		node->SetLocalPosition(Matrix::MatrixToPosition(bone.local));
 		node->SetLocalScale(Matrix::MatrixToScale(bone.local));
 		node->SetLocalRotation(Matrix::MatrixToRotation(bone.local));
@@ -330,7 +329,7 @@ void Transform::UpdateTransform()
 
 	// step 4
 	Matrix S, R, T;
-	S = Matrix::ScaleToMatrix(_anim_scale * _local_scale);
+	S = Matrix::ScaleToMatrix(_local_scale);
 	R = Matrix::QuaternionToMatrix(_calced_local_rot); // 왜 여기냐면 physics 는 append 고려 못함
 	T = Matrix::PositionToMatrix(_calced_local_pos);
 

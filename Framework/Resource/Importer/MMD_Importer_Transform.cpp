@@ -30,8 +30,8 @@ bool MMD_Importer::LoadTransform(Transform* transform)
 	LoadSkeleton_Resursive(skeleton, bone_links_data);
 	mgr->RegisterResource<Skeleton>(skeleton, _basePathName + Extension_SkeletonW);
 	transform->Set_Skeleton(skeleton->GetPath(), true);
-
-
+	transform->Update();
+	
 	return true;
 }
 

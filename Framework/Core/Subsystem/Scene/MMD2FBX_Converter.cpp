@@ -168,6 +168,7 @@ void MMD2FBX_Converter::SetSampleActor(const std::wstring& model_path, const std
 		}
 
 		_actor->GetSetting()->Set_UsePhysics(_use_physics);
+		_actor->GetSetting()->Set_UseJacobian(_use_jacobian);
 		_context->GetSubsystem<PhysicsManager>()->Set_Use_Physics(_use_physics);
 		_actor->GetComponent<Animator>()->SetCurrentFrame(_start_frame);
 	}	

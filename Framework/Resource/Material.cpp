@@ -113,7 +113,10 @@ std::wstring Material::Get_TexturePath(Type_Texture type)
 {
 	if (_textures.find(type) != _textures.end())
 	{
-		return _textures[type]->GetPath();
+		if (_textures[type] == nullptr)
+			return None_StringW;
+		else
+			return _textures[type]->GetPath();
 	}
 	return None_StringW;
 }

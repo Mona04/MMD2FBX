@@ -28,4 +28,13 @@ Fbx use euler angles so animation using values upper 180 degree makes fbx animat
 If you convert the euler angles to quaternion, the strange animation will be fixed.
 
 
+FBX SDK do not accept japanese. 
+
+So I decided to use "TEX" folder as a texture folder of mmd.
+
+Please alter your texture folder of a mmd file.
+
+Also, Texture written with japanese is not accepted. 
+
+
 

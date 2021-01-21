@@ -16,7 +16,7 @@ int APIENTRY WinMain
 	int nCmdShow
 )
 {
-	Window::Create(hInstance, 600, 230);
+	Window::Create(hInstance, 600, 240);
 	Window::Show();
 
 	Initialize();

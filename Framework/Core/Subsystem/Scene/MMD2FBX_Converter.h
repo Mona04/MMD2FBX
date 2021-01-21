@@ -19,11 +19,6 @@ namespace Framework
 		void Record();
 		void Export();
 
-		bool IsComplete() { return _is_complete; }
-		void Set_Is_For_Binary(bool var) { _is_for_binary = var; }
-		void Set_Use_Physics(bool var) { _use_physics = var; }
-		bool Use_Physics() { return _use_physics; }
-
 		void SetSampleActor(const std::wstring& model_path, const std::wstring& anim_path);
 
 		void Set_StartFrame(int var);
@@ -34,6 +29,14 @@ namespace Framework
 
 		float Get_Percentage() { return (float)(_cur_frame - _start_frame) / (float)(_end_frame - _start_frame); }
 
+	public:
+		bool IsComplete() { return _is_complete; }
+		void Set_Is_For_Binary(bool var) { _is_for_binary = var; }
+		void Set_Use_Physics(bool var) { _use_physics = var; }
+		bool Use_Physics() { return _use_physics; }
+		void Set_Use_Jacobian(bool var) { _use_jacobian = var; }
+		bool Use_Jacobian() { return _use_jacobian; }
+
 	protected:
 		MMD2FBX _exporter;
 		VMD2Binary _binary_exporter;
@@ -42,6 +45,7 @@ namespace Framework
 		bool _is_complete = false;
 		bool _is_for_binary = false;
 		bool _use_physics = false;
+		bool _use_jacobian = false;
 
 		int _start_frame = 0;
 		int _end_frame = -1;

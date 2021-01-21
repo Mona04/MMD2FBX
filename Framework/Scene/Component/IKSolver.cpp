@@ -63,11 +63,16 @@ void IKSolver::Init()
 
 bool IKSolver::Update()
 {
-	for (auto& ikProblem : _ikPloblems)
+	if (_actor->GetSetting()->UseJacobian())
 	{
-		Solve_Jacobian(ikProblem);
-		//Solve(ikProblem);	
+		for (auto& ikProblem : _ikPloblems)
+			Solve_Jacobian(ikProblem);
 	}
+	else {
+		for (auto& ikProblem : _ikPloblems)
+			Solve(ikProblem);		
+	}
+
 	return true;
 }
 

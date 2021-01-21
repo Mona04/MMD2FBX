@@ -221,7 +221,12 @@ bool MMD_Importer::LoadTexturePath(std::vector<std::wstring>& texturesPath)
 	texturesPath.resize(texture_count);
 
 	for (int i = 0; i < texture_count; i++)
-		texturesPath[i] = FileSystem::Find_Replace_All(ReadString(_stream, _setting.encoding), L"\\", L"/");
+	{
+		// free image which cannot use unicode cannot read japanese path. 
+		// So you must revise texture folder to "TEX" 
+		auto path = L"TEX/" + FileSystem::GetFileNameFromPath(ReadString(_stream, _setting.encoding));
+		texturesPath[i] = FileSystem::Find_Replace_All(path, L"\\", L"/");
+	}
 
 	return true;
 }

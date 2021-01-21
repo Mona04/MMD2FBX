@@ -48,7 +48,7 @@ void LEngine::Create()
 	CreateWindowW(TEXT("button"), TEXT("Export"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 450, 50, 100, 25, hWnd, (HMENU)3, hInstance, NULL);
 	CreateWindowW(TEXT("button"), TEXT("B_Export"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 450, 80, 100, 25, hWnd, (HMENU)4, hInstance, NULL);
 
-	progress = CreateWindowW(PROGRESS_CLASSW, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, 10, 160, 500, 10, hWnd, (HMENU)5, hInstance, NULL);
+	progress = CreateWindowW(PROGRESS_CLASSW, NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, 10, 180, 550, 10, hWnd, (HMENU)5, hInstance, NULL);
 	SendMessageW(progress, PBM_SETRANGE, 0, MAKELPARAM(0, 100));
 	SendMessageW(progress, PBM_SETPOS, 0.f, 0);
 	InvalidateRect(hWnd, NULL, FALSE);
@@ -63,7 +63,8 @@ void LEngine::Create()
 	frame_start = CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("Edit"), TEXT("0"), WS_CHILD | WS_VISIBLE, 250, 120, 40, 20, hWnd, (HMENU)22, NULL, NULL);
 	CreateWindowW(TEXT("static"), TEXT("End Frame"), WS_CHILD | WS_VISIBLE | WS_TABSTOP, 300, 120, 90, 20, hWnd, (HMENU)20, hInstance, NULL);
 	frame_end = CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("Edit"), TEXT("-1"), WS_CHILD | WS_VISIBLE, 330, 120, 40, 20, hWnd, (HMENU)23, NULL, NULL);
-	use_physics = CreateWindowW(TEXT("button"), TEXT("Use Physics"), WS_CHILD | WS_VISIBLE | BS_CHECKBOX, 430, 120, 100, 20, hWnd, (HMENU)24, hInstance, NULL);
+	use_physics = CreateWindowW(TEXT("button"), TEXT("Use Physics"), WS_CHILD | WS_VISIBLE | BS_CHECKBOX, 440, 120, 100, 20, hWnd, (HMENU)24, hInstance, NULL);
+	use_jacobian = CreateWindowW(TEXT("button"), TEXT("Use Simple Jacobian"), WS_CHILD | WS_VISIBLE | BS_CHECKBOX, 385, 150, 160, 20, hWnd, (HMENU)25, hInstance, NULL);
 }
 
 void LEngine::Command(WPARAM wParam)
@@ -151,6 +152,17 @@ void LEngine::Command(WPARAM wParam)
 		else {
 			_converter->Set_Use_Physics(true);
 			SendMessageW(use_physics, BM_SETCHECK, BST_CHECKED, 0);
+		}
+		break;
+	case 25:
+		if (_converter->Use_Jacobian())
+		{
+			_converter->Set_Use_Jacobian(false);
+			SendMessageW(use_jacobian, BM_SETCHECK, BST_UNCHECKED, 0);
+		}
+		else {
+			_converter->Set_Use_Jacobian(true);
+			SendMessageW(use_jacobian, BM_SETCHECK, BST_CHECKED, 0);
 		}
 		break;
 	}

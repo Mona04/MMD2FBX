@@ -50,13 +50,12 @@ private:
 	
 	FbxNode* SaveSkeleton(FbxScene* scene, FbxNode* parent, Framework::Transform* transform);
 	bool SaveSkeletonRecursive(FbxScene* scene, FbxNode* parent, Framework::Transform* transform);
+	FbxNode* AddBoneNode(FbxScene* scene,  Framework::Transform* transform);
 
 	bool SaveCluster(FbxScene* scene, FbxNode* node_mesh, FbxNode* node_bone_root, std::shared_ptr<Framework::Mesh> srcMesh, int index_start, int index_end);
 	bool SaveBindPos(FbxScene* scene, FbxNode* node_mesh);
 	bool SaveRestPos(FbxScene* scene, FbxNode* node_bone_root);
 	void SaveAnimation(FbxScene* pScene, FbxNode* pSkeletonRoot);
-
-	void GetBoneNodeArray(FbxNode* parent, std::vector<FbxNode*>& boneNode_array);
 
 private:
 	bool SaveExScene(FbxScene* scene);
@@ -69,16 +68,16 @@ private:
 
 	void AddNodeRecursively(std::vector<FbxNode*>& pNodeArray, FbxNode* pNode);
 
-
 private:;
     // fbx make node for each mesh. so src_bone_num may different with fbx_bone_num.
 
 	std::string _diffuse_element_name = "Diffuse";
-	std::string _ambient_element_name = "Ambient";
-	std::string _emissive_element_name = "Emissive";
+	std::string _sphere_element_name = "Sphere";
+	std::string _toon_element_name = "Toon";
 
 	FbxManager* _manager = nullptr;
 	FbxScene* _scene_refer = nullptr;
+	std::vector<FbxNode*> _boneNode_array;
 
 	std::vector<Channel_Data> _channels_data;
 	Framework::Actor* _actor;

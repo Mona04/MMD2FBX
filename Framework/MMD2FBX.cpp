@@ -32,6 +32,9 @@ MMD2FBX::~MMD2FBX()
 
 void MMD2FBX::Clear()
 {
+	_boneNode_array.clear();
+	_boneNode_array.shrink_to_fit();
+
 	if (_manager)
 	{
 		_manager->Destroy();
@@ -228,27 +231,27 @@ bool MMD2FBX::SaveMesh(FbxScene* scene, FbxNode* node_mesh, std::shared_ptr<Mesh
 	int n_layer = mesh->CreateLayer();
 	mesh->GetLayer(n_layer)->SetUVs(uv_diffuse);
 
-	FbxLayerElementUV* uv_emissive = FbxLayerElementUV::Create(mesh, _emissive_element_name.c_str());
-	uv_emissive->SetMappingMode(FbxLayerElement::EMappingMode::eByControlPoint);
-	uv_emissive->SetReferenceMode(FbxLayerElement::EReferenceMode::eDirect);
+	FbxLayerElementUV* uv_sphere = FbxLayerElementUV::Create(mesh, _sphere_element_name.c_str());
+	uv_sphere->SetMappingMode(FbxLayerElement::EMappingMode::eByControlPoint);
+	uv_sphere->SetReferenceMode(FbxLayerElement::EReferenceMode::eDirect);
 	{
-		uv_emissive->GetDirectArray().AddMultiple(uvs.size());
+		uv_sphere->GetDirectArray().AddMultiple(uvs.size());
 		for (int i = 0; i < uvs.size(); i++)
-			uv_emissive->GetDirectArray().SetAt(i, uvs[i]);
+			uv_sphere->GetDirectArray().SetAt(i, uvs[i]);
 	}
 	n_layer = mesh->CreateLayer();
-	mesh->GetLayer(n_layer)->SetUVs(uv_emissive);
+	mesh->GetLayer(n_layer)->SetUVs(uv_sphere);
 	
-	FbxLayerElementUV* uv_ambient = FbxLayerElementUV::Create(mesh, _ambient_element_name.c_str());
-	uv_ambient->SetMappingMode(FbxLayerElement::EMappingMode::eByControlPoint);
-	uv_ambient->SetReferenceMode(FbxLayerElement::EReferenceMode::eDirect);
+	FbxLayerElementUV* uv_toon = FbxLayerElementUV::Create(mesh, _toon_element_name.c_str());
+	uv_toon->SetMappingMode(FbxLayerElement::EMappingMode::eByControlPoint);
+	uv_toon->SetReferenceMode(FbxLayerElement::EReferenceMode::eDirect);
 	{
-		uv_ambient->GetDirectArray().AddMultiple(uvs.size());
+		uv_toon->GetDirectArray().AddMultiple(uvs.size());
 		for (int i = 0; i < uvs.size(); i++)
-			uv_ambient->GetDirectArray().SetAt(i, uvs[i]);
+			uv_toon->GetDirectArray().SetAt(i, uvs[i]);
 	}
 	n_layer = mesh->CreateLayer();
-	mesh->GetLayer(n_layer)->SetUVs(uv_ambient);
+	mesh->GetLayer(n_layer)->SetUVs(uv_toon);
 
 	//============== Normal ===================================
 	FbxLayerElementNormal* normal = FbxLayerElementNormal::Create(mesh, "Normal");
@@ -343,8 +346,8 @@ bool MMD2FBX::SaveMaterial(FbxScene* scene, FbxMesh* mesh, std::shared_ptr<Frame
 
 	// Set texture properties.
 	auto path = srcMaterial->Get_TexturePath(Material::Type_Texture::Diffuse);
-	auto diffuse_path = FileSystem::ToString(FileSystem::GetPartPath(path, 1));
-	lTexture->SetFileName(diffuse_path.c_str()); // Resource file is in current directory.
+	auto texture_path = FileSystem::ToString(FileSystem::GetPartPath(path, 1));
+	lTexture->SetFileName(texture_path.c_str()); // Resource file is in current directory.
 	lTexture->SetTextureUse(FbxTexture::eStandard);
 	lTexture->SetMappingType(FbxTexture::eUV);
 	lTexture->SetMaterialUse(FbxFileTexture::eModelMaterial);
@@ -358,10 +361,11 @@ bool MMD2FBX::SaveMaterial(FbxScene* scene, FbxMesh* mesh, std::shared_ptr<Frame
 		material->Diffuse.ConnectSrcObject(lTexture);
 
 	
-	lTexture = FbxFileTexture::Create(scene, "Ambient Texture");
-
+	lTexture = FbxFileTexture::Create(scene, "Sphere Texture");
+	path = srcMaterial->Get_TexturePath(Material::Type_Texture::Sphere);
+	texture_path = FileSystem::ToString(FileSystem::GetPartPath(path, 1));
 	// Set texture properties.
-	lTexture->SetFileName("gradient.jpg"); // Resource file is in current directory.
+	lTexture->SetFileName(texture_path.c_str()); // Resource file is in current directory.
 	lTexture->SetTextureUse(FbxTexture::eStandard);
 	lTexture->SetMappingType(FbxTexture::eUV);
 	lTexture->SetMaterialUse(FbxFileTexture::eModelMaterial);
@@ -369,15 +373,16 @@ bool MMD2FBX::SaveMaterial(FbxScene* scene, FbxMesh* mesh, std::shared_ptr<Frame
 	lTexture->SetTranslation(0.0, 0.0);
 	lTexture->SetScale(1.0, 1.0);
 	lTexture->SetRotation(0.0, 0.0);
-	lTexture->UVSet.Set(_ambient_element_name.c_str()); // Connect texture to the proper UV
+	lTexture->UVSet.Set(_sphere_element_name.c_str()); // Connect texture to the proper UV
 
 	if (material)
 		material->Ambient.ConnectSrcObject(lTexture);
 
-	lTexture = FbxFileTexture::Create(scene, "Emissive Texture");
-
+	lTexture = FbxFileTexture::Create(scene, "Toon Texture");
+	path = srcMaterial->Get_TexturePath(Material::Type_Texture::Sphere);
+	texture_path = FileSystem::ToString(FileSystem::GetPartPath(path, 1));
 	// Set texture properties.
-	lTexture->SetFileName("spotty.jpg"); // Resource file is in current directory.
+	lTexture->SetFileName(texture_path.c_str()); // Resource file is in current directory.
 	lTexture->SetTextureUse(FbxTexture::eStandard);
 	lTexture->SetMappingType(FbxTexture::eUV);
 	lTexture->SetMaterialUse(FbxFileTexture::eModelMaterial);
@@ -385,7 +390,7 @@ bool MMD2FBX::SaveMaterial(FbxScene* scene, FbxMesh* mesh, std::shared_ptr<Frame
 	lTexture->SetTranslation(0.0, 0.0);
 	lTexture->SetScale(1.0, 1.0);
 	lTexture->SetRotation(0.0, 0.0);
-	lTexture->UVSet.Set(_emissive_element_name.c_str()); // Connect texture to the proper UV
+	lTexture->UVSet.Set(_toon_element_name.c_str()); // Connect texture to the proper UV
 
 	if (material)
 		material->Emissive.ConnectSrcObject(lTexture);
@@ -394,12 +399,13 @@ bool MMD2FBX::SaveMaterial(FbxScene* scene, FbxMesh* mesh, std::shared_ptr<Frame
 }
 
 FbxNode* MMD2FBX::SaveSkeleton(FbxScene* scene, FbxNode* parent, Transform* transform)
-{ 
-	auto node_name = FbxString(FileSystem::ToString(transform->GetName()).c_str());
-	FbxNode* node = FbxNode::Create(scene, node_name);
+{
+	_boneNode_array.resize(transform->Get_Transform_Array().size());
+
+	FbxNode* node = AddBoneNode(scene, transform);
 	parent->AddChild(node);
 
-	FbxSkeleton* boneAttribute = FbxSkeleton::Create(scene, node_name);
+	FbxSkeleton* boneAttribute = FbxSkeleton::Create(scene, node->GetName());
 	boneAttribute->SetSkeletonType(FbxSkeleton::eRoot);
 	//boneAttribute->Size.Set(1.0);
 
@@ -409,16 +415,26 @@ FbxNode* MMD2FBX::SaveSkeleton(FbxScene* scene, FbxNode* parent, Transform* tran
 	for (const auto child : transform->GetChilds())
 		SaveSkeletonRecursive(scene, node, child);
 
+	for (const auto n : _boneNode_array)
+	{
+		if (n)
+		{
+			OutputDebugStringA((std::string(n->GetName()) + "\n").c_str());
+		}
+	}
+
 	return node;	
 }
 
 bool MMD2FBX::SaveSkeletonRecursive(FbxScene* scene, FbxNode* parent, Transform* transform)
 {
-	auto node_name = FbxString(FileSystem::ToString(transform->GetName()).c_str());
-	FbxNode* node = FbxNode::Create(scene, node_name);
+	FbxNode* node = AddBoneNode(scene, transform);
+	if (node == nullptr)
+		return false;
+
 	parent->AddChild(node);
 
-	FbxSkeleton* boneAttribute = FbxSkeleton::Create(scene, node_name);
+	FbxSkeleton* boneAttribute = FbxSkeleton::Create(scene, node->GetName());
 	boneAttribute->SetSkeletonType(FbxSkeleton::eLimb);
 
 	auto local_pos = transform->GetLocalPosition();
@@ -435,18 +451,37 @@ bool MMD2FBX::SaveSkeletonRecursive(FbxScene* scene, FbxNode* parent, Transform*
 	return true;
 }
 
+FbxNode* MMD2FBX::AddBoneNode(FbxScene* scene, Transform* transform)
+{
+	if (transform == nullptr)
+		return nullptr;
+	auto node_name = FbxString(FileSystem::ToString(transform->GetName()).c_str());
+
+	for (const auto n : _boneNode_array)
+	{
+		if (n && n->GetName() == std::string(node_name))
+		{
+			node_name += "_duplicated";
+		}
+	}
+
+	FbxNode* node = FbxNode::Create(scene, node_name);
+
+	if (transform->GetBoneIndex() >= 0)
+		_boneNode_array[transform->GetBoneIndex()] = node;
+
+	return node;
+}
+
 bool MMD2FBX::SaveCluster(FbxScene* scene, FbxNode* node_mesh, FbxNode* node_bone_root, std::shared_ptr<Framework::Mesh> srcMesh, int index_start, int index_end)
 {
-	std::vector<FbxNode*> boneNode_array;
-	GetBoneNodeArray(node_bone_root, boneNode_array);
-
 	const auto& src_vertices = srcMesh->GetVertices();
 	const auto& src_indices = srcMesh->GetIndices();
 
 	std::vector<FbxVector4> vertices;
 	std::unordered_map<uint, uint> src2dst_index;
 	std::vector<std::vector<std::pair<unsigned int, float>>> boneWeights_splitted
-		= std::vector<std::vector<std::pair<unsigned int, float>>>(boneNode_array.size());
+		= std::vector<std::vector<std::pair<unsigned int, float>>>(_boneNode_array.size());
 
 	// mmd devides one mesh by index recorded by material
 	for (int i = index_start; i < index_end; i++)
@@ -471,10 +506,10 @@ bool MMD2FBX::SaveCluster(FbxScene* scene, FbxNode* node_mesh, FbxNode* node_bon
 	}
 
 	std::vector<FbxCluster*> clusters;
-	for (int bone_index = 0; bone_index < boneNode_array.size(); bone_index++)
+	for (int bone_index = 0; bone_index < _boneNode_array.size(); bone_index++)
 	{
 		FbxCluster* cluster = FbxCluster::Create(scene, "");
-		cluster->SetLink(boneNode_array[bone_index]);
+		cluster->SetLink(_boneNode_array[bone_index]);
 		cluster->SetLinkMode(FbxCluster::eTotalOne);
 		for (const auto& v_index_bone_weight : boneWeights_splitted[bone_index])
 			cluster->AddControlPointIndex(v_index_bone_weight.first, v_index_bone_weight.second);
@@ -493,17 +528,20 @@ bool MMD2FBX::SaveCluster(FbxScene* scene, FbxNode* node_mesh, FbxNode* node_bon
 	for (auto i = 0 ; i < clusters.size(); i++)
 	{
 		auto cluster = clusters[i];
-		auto bone = boneNode_array[i];
-
-		cluster->SetTransformMatrix(scene_matrix);
-		if (lScene) bone_matrix = bone->EvaluateGlobalTransform();
-		cluster->SetTransformLinkMatrix(bone_matrix);
+		auto bone = _boneNode_array[i];
+		if (bone)
+		{
+			cluster->SetTransformMatrix(scene_matrix);
+			if (lScene) bone_matrix = bone->EvaluateGlobalTransform();
+			cluster->SetTransformLinkMatrix(bone_matrix);
+		}
 	}
 
 	// Add the clusters to the mesh by creating a skin and adding those clusters to that skin.
 	// After add that skin.
 	FbxGeometry* lPatchAttribute = (FbxGeometry*)node_mesh->GetNodeAttribute();
 	FbxSkin* skin = FbxSkin::Create(scene, "");
+
 	for (const auto& cluster : clusters)
 		skin->AddCluster(cluster);
 	lPatchAttribute->AddDeformer(skin);
@@ -523,9 +561,6 @@ bool MMD2FBX::SaveRestPos(FbxScene* scene, FbxNode* node_bone_root)
 
 void MMD2FBX::SaveAnimation(FbxScene* pScene, FbxNode* node_bone_root)
 {
-	std::vector<FbxNode*> boneNode_array;
-	GetBoneNodeArray(node_bone_root, boneNode_array);
-
 	FbxAnimStack* lAnimStack = FbxAnimStack::Create(pScene, "MMD Animation");
 	FbxAnimLayer* lAnimLayer = FbxAnimLayer::Create(pScene, "Base Layer");
 	lAnimStack->AddMember(lAnimLayer);
@@ -538,8 +573,10 @@ void MMD2FBX::SaveAnimation(FbxScene* pScene, FbxNode* node_bone_root)
 	// Create the AnimCurve on tras, rot
 	for (int type = 0; type < 2; type++)
 	{
-		for (int bone_index = 0; bone_index < boneNode_array.size(); bone_index++)
+		for (int bone_index = 0; bone_index < _boneNode_array.size(); bone_index++)
 		{
+			if (_boneNode_array[bone_index] == nullptr)
+				continue;
 			for (int channel_index = 0; channel_index < curve_channels.size(); channel_index++)
 			{
 				const auto& channel_data = _channels_data[bone_index];
@@ -547,7 +584,7 @@ void MMD2FBX::SaveAnimation(FbxScene* pScene, FbxNode* node_bone_root)
 				switch (type)
 				{
 				case 0: 
-					lCurve = boneNode_array[bone_index]->LclTranslation.GetCurve(lAnimLayer, curve_channels[channel_index], true); 
+					lCurve = _boneNode_array[bone_index]->LclTranslation.GetCurve(lAnimLayer, curve_channels[channel_index], true);
 					lCurve->KeyClear();
 					lCurve->KeyModifyBegin();
 					for (const auto& frame : channel_data._posKeys)
@@ -560,7 +597,7 @@ void MMD2FBX::SaveAnimation(FbxScene* pScene, FbxNode* node_bone_root)
 					lCurve->KeyModifyEnd();
 					break;					
 				case 1:
-					lCurve = boneNode_array[bone_index]->LclRotation.GetCurve(lAnimLayer, curve_channels[channel_index], true);
+					lCurve = _boneNode_array[bone_index]->LclRotation.GetCurve(lAnimLayer, curve_channels[channel_index], true);
 					lCurve->KeyClear();
 					lCurve->KeyModifyBegin();
 					for (const auto& frame : channel_data._rotKeys)
@@ -576,27 +613,4 @@ void MMD2FBX::SaveAnimation(FbxScene* pScene, FbxNode* node_bone_root)
 			}
 		}
 	}
-}
-
-void MMD2FBX::GetBoneNodeArray(FbxNode* parent, std::vector<FbxNode*>& boneNode_array)
-{
-	const auto& boneArray = _actor->GetComponent<Transform>()->Get_Transform_Array();
-	if (boneNode_array.size() != boneArray.size()) // actually it should be done outside recursive function. but i'm lazy
-		boneNode_array.resize(boneArray.size());
-
-	for(int i = 0; i < boneNode_array.size(); i++)
-	{
-		auto boneArrayName = FbxString(FileSystem::ToString(boneArray[i]->GetName()).c_str());
-		if (boneArrayName == parent->GetName())
-		{
-			boneNode_array[i] = parent;
-			break;
-		}
-		if (i == boneNode_array.size() - 1)
-			Log("Making BoneNode Array is failded");
-	}
-	
-	for (int i = 0; i < parent->GetChildCount(); i++)
-		GetBoneNodeArray(parent->GetChild(i), boneNode_array);
-
 }
