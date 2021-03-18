@@ -138,7 +138,8 @@ namespace Framework
 		bool UseIK() { return _use_ik; }
 		void Set_UsePhysics(bool var) { _use_physics = var; }
 		bool UsePhysics() { return _use_physics; }
-			
+		bool UseDynamicAnim() { return _use_dynamic_animation; }
+		void Set_UseDynamicAnim(bool var) { _use_dynamic_animation = var; }
 
 	private:
 		float _MsPerTic = 0;
@@ -147,10 +148,12 @@ namespace Framework
 		std::vector<Bone_Channel> _channels;
 		std::map<std::wstring, Morph_Channel> _morph_channels;
 		std::vector<Camera_Key> _camera_keys;
+		std::vector<Matrix> _baked_worlds;
 
 		bool _isMMD = false;
 		bool _isLoop = true;
 		bool _use_ik = false;
 		bool _use_physics = false;
+		bool _use_dynamic_animation = true;
 	};
 }

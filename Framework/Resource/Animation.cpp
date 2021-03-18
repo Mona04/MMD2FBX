@@ -29,6 +29,7 @@ bool Animation::LoadFromFile(std::wstring_view path)
 		stream.Read(_isLoop);
 		stream.Read(_use_ik);
 		stream.Read(_use_physics);
+		stream.Read(_use_dynamic_animation);
 
 		uint nChannels = stream.ReadUInt();
 		_channels.resize(nChannels);
@@ -47,6 +48,8 @@ bool Animation::LoadFromFile(std::wstring_view path)
 		_camera_keys.resize(nKeys);		
 		for (auto& key : _camera_keys)
 			key.LoadFromFile(stream);
+
+		stream.Read(_baked_worlds);
 	}
 
 	return true;
@@ -63,6 +66,7 @@ bool Animation::SaveToFile(std::wstring_view path) const
 		stream.Write(_isLoop);
 		stream.Write(_use_ik);
 		stream.Write(_use_physics);
+		stream.Write(_use_dynamic_animation);
 
 		stream.Write(static_cast<uint>(_channels.size()));
 		for (auto& channel : _channels)
@@ -78,6 +82,8 @@ bool Animation::SaveToFile(std::wstring_view path) const
 		stream.Write(static_cast<uint>(_camera_keys.size()));
 		for (auto& key : _camera_keys)
 			key.SaveToFile(stream);
+
+		stream.Write(_baked_worlds);
 	}
 
 	return true;

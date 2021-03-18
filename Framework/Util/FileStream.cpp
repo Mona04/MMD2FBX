@@ -133,15 +133,6 @@ void FileStream::Write(const std::wstring& value)
 		out.write(reinterpret_cast<const char*>(&value[i]), sizeof(WCHAR));
 }
 
-
-void FileStream::Write(const std::vector<std::byte>& value)
-{
-	uint length = static_cast<uint>(value.size());
-	Write(length);
-
-	out.write(reinterpret_cast<const char*>(value.data()), sizeof(std::byte) * length);
-}
-
 void FileStream::Read(std::string& value)
 {
 	uint length = ReadUInt();
@@ -166,18 +157,6 @@ void FileStream::Read(std::wstring& value)
 		in.read(reinterpret_cast<char*>(&_wchar), sizeof(WCHAR));
 		value[i] = _wchar;
 	}
-}
-
-void FileStream::Read(std::vector<std::byte>& value)
-{
-	uint length = ReadUInt();
-
-	value.clear();
-	value.shrink_to_fit();
-	value.reserve(length);
-	value.resize(length);
-
-	in.read(reinterpret_cast<char*>(value.data()), sizeof(std::byte) * length);
 }
 
 const uint FileStream::ReadUInt()

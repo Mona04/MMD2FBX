@@ -14509,3 +14509,67 @@
 [Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kokoro/kokoro.morph
 [Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kokoro/kokoro.rbinfo
 [Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/mmd_motion/mmd_Melt_motion.anim
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/kyaru.skmesh
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/kyaru0.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/k2.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/kyaru1.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/C1-1.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/W06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/kyaru2.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/kyaru3.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/C1-2.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/Ws06.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/kyaru4.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/hair.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/h.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/kyaru5.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/EYE.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/kyaru6.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/toon_s03.bmp
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/kyaru7.material
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/body.png
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 62] Already Created Source - ../../../Chimera/_Assets/Model/kyaru/TEX/skin.spa
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/kyaru.skeleton
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/kyaru.morph
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/kyaru/kyaru.rbinfo
+[Info] [Fun : Framework::ResourceManager::GetResource] [Line : 67] Create Source - ../../../Chimera/_Assets/Model/mmd_motion/mikuplus_m.anim
