@@ -78,7 +78,7 @@ bool MMD_Importer::LoadRigidBody(std::shared_ptr<class RBInfo> rbInfo)
 	_stream->read((char*)&rigid_body_count, sizeof(int));
 	
 	std::wstring rigid_body_english_name;
-	int target_bone;  // root node ¾øÀ½
+	int target_bone;  // root node Â¾Ã¸Ã€Â½
 	uint8_t group;
 	uint16_t mask;
 	uint8_t shape;   // Sphere : 0, Box : 1, Capsule : 2
@@ -107,7 +107,7 @@ bool MMD_Importer::LoadRigidBody(std::shared_ptr<class RBInfo> rbInfo)
 		PreProcess_MMD_Vector3(rb._size, true);
 		PreProcess_MMD_Vector3(rb._pos, true);
 
-		rb._group = group;
+		rb._group = 1 << group;
 		rb._group_mask = mask;
 		rb._col_shape_type = (Type_ColShape)shape;
 		rb._rb_type = (Type_RB)physics_calc_type;
